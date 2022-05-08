@@ -9,10 +9,11 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    
+    @IBOutlet weak var messageImage: UIImageView!
     @IBOutlet weak var toWhoTextField: UITextField!
     @IBOutlet weak var messageTextField: UITextField!
     
+    var messageImageName = "message_front"
     var toWho: String = ""
     var message: String = ""
     
@@ -20,6 +21,20 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Greeting"
+        
+        messageImage.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeMessageImage))
+        messageImage.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    @objc func changeMessageImage() {
+        if messageImageName == "message_front" {
+            messageImageName = "message_back"
+            messageImage.image = UIImage(named: "message_back")
+        } else {
+            messageImageName = "message_front"
+            messageImage.image = UIImage(named: "message_front")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +44,7 @@ class MainViewController: UIViewController {
     }
         
     override func viewWillDisappear(_ animated: Bool) {
+        toWhoTextField.becomeFirstResponder()
         toWhoTextField.text = ""
         messageTextField.text = ""
     }
@@ -39,6 +55,16 @@ class MainViewController: UIViewController {
         
         if toWho != "" && message != "" {
             performSegue(withIdentifier: "toMessageView", sender: nil)
+        } else {
+            let alert = UIAlertController(title: "Warning", message: "Please fill fields completely", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "I understand", style: UIAlertAction.Style.cancel) { UIAlertAction in
+                print("User understood")
+            }
+            alert.addAction(okButton)
+            
+            self.present(alert, animated: true) {
+                print("Alert complete")
+            }
         }
     }
     
