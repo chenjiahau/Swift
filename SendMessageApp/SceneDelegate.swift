@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  SampleApp
+//  SendMessageApp
 //
 //  Created by chen Ivan on 2022/5/8.
 //
