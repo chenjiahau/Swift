@@ -17,6 +17,9 @@ class MainViewController: UIViewController {
     var toWho: String = ""
     var message: String = ""
     
+    var timer = Timer()
+    var changeMessageImageTime = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,9 +28,17 @@ class MainViewController: UIViewController {
         messageImage.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeMessageImage))
         messageImage.addGestureRecognizer(gestureRecognizer)
+        
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(changeMessageImage), userInfo: nil, repeats: true)
     }
     
     @objc func changeMessageImage() {
+        changeMessageImageTime += 1
+        
+        if changeMessageImageTime == 10 {
+            timer.invalidate()
+        }
+        
         if messageImageName == "message_front" {
             messageImageName = "message_back"
             messageImage.image = UIImage(named: "message_back")
