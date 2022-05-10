@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  SampleApp
+//  CatchMe
 //
-//  Created by chen Ivan on 2022/5/8.
+//  Created by chen Ivan on 2022/5/10.
 //
 
 import UIKit
