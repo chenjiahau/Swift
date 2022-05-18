@@ -16,7 +16,6 @@ class MessageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Greeting"
         let backButton = UIBarButtonItem()
         backButton.title = "Back"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
@@ -32,5 +31,9 @@ class MessageViewController: UIViewController {
         
     override func viewWillDisappear(_ animated: Bool) {
     }
-
+    
+    @IBAction func goBack(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }

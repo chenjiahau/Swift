@@ -23,8 +23,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Greeting"
-        
         messageImage.isUserInteractionEnabled = true
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(changeMessageImage))
         messageImage.addGestureRecognizer(gestureRecognizer)
