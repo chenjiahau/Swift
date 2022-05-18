@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  SampleApp
+//  Quiz
 //
-//  Created by chen Ivan on 2022/5/8.
+//  Created by chen Ivan on 2022/5/19.
 //
 
 import UIKit
