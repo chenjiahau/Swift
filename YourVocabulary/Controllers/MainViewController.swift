@@ -1,13 +1,13 @@
 //
 //  ViewController.swift
-//  SampleApp
+//  YourVocabulary
 //
-//  Created by chen Ivan on 2022/5/8.
+//  Created by Ivan Chen on 2022/5/28.
 //
 
 import UIKit
 
-class MainController: UIViewController {
+class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
