@@ -17,7 +17,7 @@ class MainTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        logUserOut()
+        // logUserOut()
         checkUser()
     }
     

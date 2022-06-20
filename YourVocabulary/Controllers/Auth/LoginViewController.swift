@@ -129,15 +129,14 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            guard let destinationController = UIApplication.shared.keyWindow?.rootViewController as? MainTabViewController else { return }
-            destinationController.configureUI()
+            guard let mainTabViewController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController as? MainTabViewController else { return }
+            mainTabViewController.configureUI()
             
             self.dismiss(animated: true, completion: nil)
         }
     }
     
     @objc func clickGotoSignupButton(_ sender: UIButton) {
-        print(1)
         let destinationController = SignupViewController()
         navigationController?.pushViewController(destinationController, animated: true)
     }
