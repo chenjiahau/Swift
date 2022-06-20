@@ -21,127 +21,28 @@ class LoginViewController: UIViewController {
     }()
     
     private lazy var emailContainerView: UIView = {
-        let view = UIView()
-        view.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        
-        let imageView = UIImageView()
-        view.addSubview(imageView)
-        imageView.tintColor = .appMainColor
-        imageView.image = UIImage(systemName: "envelope")
-        imageView.anchor(
-            top: view.topAnchor,
-            left: view.leftAnchor,
-            paddingTop: 12,
-            paddingLeft: 8,
-            width: 24,
-            height: 24
-        )
-        
-        view.addSubview(emailTextField)
-        emailTextField.anchor(
-            top: view.topAnchor,
-            left: imageView.rightAnchor,
-            right: view.rightAnchor,
-            paddingTop: 14,
-            paddingLeft: 8,
-            paddingRight: 8
-        )
-        
-        let dividerView: UIView = {
-            let view = UIView()
-            
-            view.backgroundColor = .appMainColor
-            view.heightAnchor.constraint(equalToConstant: 1).isActive = true
-            
-            return view
-        }()
-        view.addSubview(dividerView)
-        dividerView.anchor(
-            left: view.leftAnchor,
-            bottom: view.bottomAnchor,
-            right: view.rightAnchor
-        )
-        
+        let view = UIGenerater.makeInputContainer(systemName: "envelope", textField: emailTextField)
         return view
     }()
     
     private lazy var passwordContainerView: UIView = {
-        let view = UIView()
-        view.heightAnchor.constraint(equalToConstant: 48).isActive = true
-        
-        let imageView = UIImageView()
-        view.addSubview(imageView)
-        imageView.tintColor = .appMainColor
-        imageView.image = UIImage(systemName: "shield.lefthalf.filled")
-        imageView.anchor(
-            top: view.topAnchor,
-            left: view.leftAnchor,
-            paddingTop: 12,
-            paddingLeft: 8,
-            width: 24,
-            height: 24
-        )
-        
-        view.addSubview(passwordTextField)
-        passwordTextField.anchor(
-            top: view.topAnchor,
-            left: imageView.rightAnchor,
-            right: view.rightAnchor,
-            paddingTop: 14,
-            paddingLeft: 8,
-            paddingRight: 8
-        )
-        
-        let dividerView: UIView = {
-            let view = UIView()
-            
-            view.backgroundColor = .appMainColor
-            view.heightAnchor.constraint(equalToConstant: 1).isActive = true
-            
-            return view
-        }()
-        view.addSubview(dividerView)
-        dividerView.anchor(
-            left: view.leftAnchor,
-            bottom: view.bottomAnchor,
-            right: view.rightAnchor
-        )
-        
+        let view = UIGenerater.makeInputContainer(systemName: "shield.lefthalf.filled", textField: passwordTextField)
         return view
     }()
     
     private lazy var emailTextField: UITextField = {
-        let textField = UITextField()
-        
-        textField.placeholder = "Email"
-        textField.autocapitalizationType = .none
-        textField.textColor = .appMainColor
-        textField.font = UIFont.systemFont(ofSize: 18)
-        
+        let textField = UIGenerater.makeTextField(placeholer: "Email")
         return textField
     }()
     
     private lazy var passwordTextField: UITextField = {
-        let textField = UITextField()
-        
-        textField.placeholder = "Password"
-        textField.autocapitalizationType = .none
-        textField.isSecureTextEntry = true
-        textField.textColor = .appMainColor
-        textField.font = UIFont.systemFont(ofSize: 18)
-        
+        let textField = UIGenerater.makeTextField(placeholer: "Password", isSecureTextEntry: true)
         return textField
     }()
     
     private lazy var loginButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIGenerater.makeSubmitButton(title: "Log In")
         
-        button.setTitle("Log In", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .appMainColor
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-        button.layer.cornerRadius = 4
-        button.layer.masksToBounds = true
         button.addTarget(
             self,
             action: #selector(clickLoginButton(_:)),
@@ -152,25 +53,8 @@ class LoginViewController: UIViewController {
     }()
     
     private lazy var gotoSignUpButton: UIButton = {
-        let button = UIButton(type: .system )
+        let button = UIGenerater.makeGotoButton(firstSentence: "Don't have account, ", secondSentence: "Sign Up")
         
-        let attributedTitle = NSMutableAttributedString(
-            string: "Don't have account, ",
-            attributes: [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16),
-                NSAttributedString.Key.foregroundColor: UIColor.white
-            ]
-        )
-        attributedTitle.append(
-            NSMutableAttributedString(
-                string: "Sign Up",
-                attributes: [
-                    NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16),
-                    NSAttributedString.Key.foregroundColor: UIColor.white
-                ]
-            )
-        )
-        button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(
             self,
             action: #selector(clickGotoSignupButton(_:)),
@@ -191,7 +75,7 @@ class LoginViewController: UIViewController {
     // MARK: Helpers
     
     func configureUI() {
-        view.backgroundColor = .appSecondColor
+        view.backgroundColor = .white
         
         view.addSubview(appIcon)
         appIcon.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 12)

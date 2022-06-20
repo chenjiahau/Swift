@@ -31,7 +31,7 @@ class StudyViewController: UIViewController {
         return label
     }()
     
-    private let addSubjectButton: UIButton = {
+    private lazy var addSubjectButton: UIButton = {
         let button = UIButton(type: .system)
         
         button.tintColor = .white
