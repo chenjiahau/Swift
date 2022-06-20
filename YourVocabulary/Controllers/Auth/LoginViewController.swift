@@ -126,6 +126,7 @@ class LoginViewController: UIViewController {
         AuthSerivce.logUserIn(withEmail: email, password: password) { (data, error) in
             if let error = error {
                 print("DEBUG: AuthSerivce.logUserIn error is \(error.localizedDescription)")
+                return
             }
             
             guard let destinationController = UIApplication.shared.keyWindow?.rootViewController as? MainTabViewController else { return }
