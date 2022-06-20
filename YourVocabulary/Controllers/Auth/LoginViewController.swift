@@ -120,7 +120,19 @@ class LoginViewController: UIViewController {
     
     // MARK: Selector
     @objc func clickLoginButton(_ sender: UIButton) {
-        print("clickLoginButton")
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        
+        AuthSerivce.logUserIn(withEmail: email, password: password) { (data, error) in
+            if let error = error {
+                print("DEBUG: AuthSerivce.logUserIn error is \(error.localizedDescription)")
+            }
+            
+            guard let destinationController = UIApplication.shared.keyWindow?.rootViewController as? MainTabViewController else { return }
+            destinationController.configureUI()
+            
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func clickGotoSignupButton(_ sender: UIButton) {

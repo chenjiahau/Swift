@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MainTabViewController: UITabBarController {
     
@@ -16,7 +17,7 @@ class MainTabViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureUI()
+        checkUser()
     }
     
     // MARK: Helpers
@@ -42,6 +43,28 @@ class MainTabViewController: UITabBarController {
         nav.tabBarItem.image = image
         
         return nav
+    }
+    
+    // MARK: API
+    func checkUser() {
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let navigation = UINavigationController(rootViewController: LoginViewController())
+                
+                navigation.modalPresentationStyle = .fullScreen
+                self.present(navigation, animated: true)
+            }
+        } else {
+            configureUI()
+        }
+    }
+    
+    func logUserOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("DEBUG: MainTabViewController logUserOut error \(error.localizedDescription)")
+        }
     }
 
 }

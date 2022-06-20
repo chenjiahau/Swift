@@ -74,7 +74,7 @@ class SignupViewController: UIViewController {
     }()
     
     private lazy var gotoLoginButton: UIButton = {
-        let button = UIGenerater.makeGotoButton(firstSentence: "Have account, ", secondSentence: "Log In")
+        let button = UIGenerater.makeGotoButton(firstSentence: "Already have an account, ", secondSentence: "Log In")
         
         button.addTarget(
             self,
@@ -157,7 +157,21 @@ class SignupViewController: UIViewController {
             return
         }
         
-        
+        AuthSerivce.createUser(withEmail: email, password: password) { (data, error) in
+            if let error = error {
+                print("DEBUG: AuthSerivce.createUser error is \(error.localizedDescription)")
+            }
+            
+            guard let uid = data?.user.uid else { return }
+            let user = User(email: email, username: username).convertToDict()
+            
+            UserService.creatUser(withUid: uid, values: user!) { (error, ref) in
+                if let error = error {
+                    print("DEBUG: UserService.creatUser is \(error.localizedDescription)")
+                }
+            }
+        }
+
     }
     
     @objc func clickGotoLoginButton(_ sender: UIButton) {
