@@ -20,6 +20,16 @@ class LoginViewController: UIViewController {
         return imageView
     }()
     
+    private var errorMessageView: UIView = {
+        let view = UIGenerater.makeMessageView()
+        return view
+    }()
+    
+    private var errorMessageLabel: UILabel = {
+        let label = UIGenerater.makeErrorMessagelabel()
+        return label
+    }()
+    
     private lazy var emailContainerView: UIView = {
         let view = UIGenerater.makeInputContainer(systemName: "envelope", textField: emailTextField)
         return view
@@ -68,7 +78,6 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
     }
     
@@ -81,9 +90,21 @@ class LoginViewController: UIViewController {
         appIcon.centerX(inView: view, topAnchor: view.safeAreaLayoutGuide.topAnchor, paddingTop: 12)
         appIcon.setDimensions(width: 150, height : 150)
         
-        let stackView = UIStackView(arrangedSubviews: [emailContainerView, passwordContainerView])
+        let stackView = UIStackView(arrangedSubviews: [errorMessageView, emailContainerView, passwordContainerView])
         stackView.axis = .vertical
         stackView.spacing = 8
+        
+        errorMessageView.addSubview(errorMessageLabel)
+        errorMessageLabel.anchor(
+            top: errorMessageView.topAnchor,
+            left: errorMessageView.leftAnchor,
+            bottom: errorMessageView.bottomAnchor,
+            right: errorMessageView.rightAnchor,
+            paddingTop: 8,
+            paddingLeft: 8,
+            paddingBottom: 8,
+            paddingRight: 8
+        )
         
         view.addSubview(stackView)
         stackView.anchor(
@@ -125,7 +146,8 @@ class LoginViewController: UIViewController {
         
         AuthSerivce.logUserIn(withEmail: email, password: password) { (data, error) in
             if let error = error {
-                print("DEBUG: AuthSerivce.logUserIn error is \(error.localizedDescription)")
+                self.errorMessageView.isHidden = false
+                self.errorMessageLabel.text = error.localizedDescription
                 return
             }
             
@@ -137,6 +159,7 @@ class LoginViewController: UIViewController {
     }
     
     @objc func clickGotoSignupButton(_ sender: UIButton) {
+        errorMessageView.isHidden = true
         let destinationController = SignupViewController()
         navigationController?.pushViewController(destinationController, animated: true)
     }

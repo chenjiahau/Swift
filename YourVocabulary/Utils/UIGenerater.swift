@@ -8,7 +8,35 @@
 import UIKit
 
 struct UIGenerater {
+}
+
+
+// MARK: Message
+
+extension UIGenerater {
+    static func makeMessageView() -> UIView {
+        let view = UIView()
+        view.isHidden = true
+        
+        return view
+    }
     
+    static func makeErrorMessagelabel() -> UILabel {
+        let label = UILabel()
+        
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .appErrorColor
+        label.text = ""
+        
+        return label
+    }
+}
+
+
+// MARK: General
+
+extension UIGenerater {
     static func makeTextField(placeholer: String, isSecureTextEntry: Bool = false) -> UITextField {
         let textField = UITextField()
         

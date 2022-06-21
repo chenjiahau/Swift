@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class StudyViewController: UIViewController {
     
@@ -50,6 +51,25 @@ class StudyViewController: UIViewController {
         return button
     }()
     
+    private lazy var logoutButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        button.tintColor = .white
+        button.backgroundColor = .appMainColor
+        button.setImage(UIImage(systemName: "arrowshape.zigzag.forward.fill"), for: .normal)
+        button.layer.cornerRadius = 30 / 2
+        button.layer.masksToBounds = true
+        button.layer.borderColor = UIColor.appMainColor?.cgColor
+        button.layer.borderWidth = 2
+        button.addTarget(
+            self,
+            action: #selector(logUserOut(_:)),
+            for: .touchUpInside
+        )
+        
+        return button
+    }()
+    
     private let dividerView: UIView = {
         let view = UIView()
         view.backgroundColor = .appMainColor
@@ -73,7 +93,6 @@ class StudyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        makeDummyData()
         configureUI()
     }
     
@@ -102,10 +121,20 @@ class StudyViewController: UIViewController {
             paddingLeft: 12
         )
         
+        view.addSubview(logoutButton)
+        logoutButton.anchor(
+            top: appIcon.firstBaselineAnchor,
+            right: view.safeAreaLayoutGuide.rightAnchor,
+            paddingTop: 10,
+            paddingRight: 10,
+            width: 30,
+            height: 30
+        )
+        
         view.addSubview(addSubjectButton)
         addSubjectButton.anchor(
             top: appIcon.firstBaselineAnchor,
-            right: view.safeAreaLayoutGuide.rightAnchor,
+            right: logoutButton.leftAnchor,
             paddingTop: 10,
             paddingRight: 10,
             width: 30,
@@ -137,24 +166,39 @@ class StudyViewController: UIViewController {
     }
     
     // MARK: Selectors
+    @objc func logUserOut(_ sender: UIButton) {
+        do {
+            try Auth.auth().signOut()
+            
+            DispatchQueue.main.async {
+                let navigation = UINavigationController(rootViewController: LoginViewController())
+                
+                navigation.modalPresentationStyle = .fullScreen
+                self.present(navigation, animated: true)
+            }
+        } catch {
+            print("DEBUG: StudyViewController logUserOut error \(error.localizedDescription)")
+        }
+    }
+    
     @objc func addSubject(_ sender: UIButton) {
         print("addSubject")
     }
 }
 
 
-extension StudyViewController {
-    // MARK: Dummy data
-    func makeDummyData() {
-        subjectList.append(Subject(Title: "Dummy Lession 01"))
-        subjectList.append(Subject(Title: "Dummy Lession 02"))
-        subjectList.append(Subject(Title: "Dummy Lession 03"))
-        subjectList.append(Subject(Title: "Dummy Lession 04"))
-        subjectList.append(Subject(Title: "Dummy Lession 05"))
-        subjectList.append(Subject(Title: "Dummy Lession 06"))
-        subjectList.append(Subject(Title: "Dummy Lession 07"))
-        subjectList.append(Subject(Title: "Dummy Lession 08"))
-        subjectList.append(Subject(Title: "Dummy Lession 09"))
-        subjectList.append(Subject(Title: "Dummy Lession 10"))
-    }
-}
+//extension StudyViewController {
+//    // MARK: Dummy data
+//    func makeDummyData() {
+//        subjectList.append(Subject(Title: "Dummy Lession 01"))
+//        subjectList.append(Subject(Title: "Dummy Lession 02"))
+//        subjectList.append(Subject(Title: "Dummy Lession 03"))
+//        subjectList.append(Subject(Title: "Dummy Lession 04"))
+//        subjectList.append(Subject(Title: "Dummy Lession 05"))
+//        subjectList.append(Subject(Title: "Dummy Lession 06"))
+//        subjectList.append(Subject(Title: "Dummy Lession 07"))
+//        subjectList.append(Subject(Title: "Dummy Lession 08"))
+//        subjectList.append(Subject(Title: "Dummy Lession 09"))
+//        subjectList.append(Subject(Title: "Dummy Lession 10"))
+//    }
+//}

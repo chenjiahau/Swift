@@ -21,6 +21,16 @@ class SignupViewController: UIViewController {
         return imageView
     }()
     
+    private var errorMessageView: UIView = {
+        let view = UIGenerater.makeMessageView()
+        return view
+    }()
+    
+    private var errorMessageLabel: UILabel = {
+        let label = UIGenerater.makeErrorMessagelabel()
+        return label
+    }()
+    
     private lazy var emailContainerView: UIView = {
         let view = UIGenerater.makeInputContainer(systemName: "envelope", textField: emailTextField)
         return view
@@ -104,6 +114,7 @@ class SignupViewController: UIViewController {
         
         let stackView = UIStackView(
             arrangedSubviews: [
+                errorMessageView,
                 emailContainerView,
                 usernameContainerView,
                 passwordContainerView,
@@ -112,6 +123,18 @@ class SignupViewController: UIViewController {
         )
         stackView.axis = .vertical
         stackView.spacing = 8
+        
+        errorMessageView.addSubview(errorMessageLabel)
+        errorMessageLabel.anchor(
+            top: errorMessageView.topAnchor,
+            left: errorMessageView.leftAnchor,
+            bottom: errorMessageView.bottomAnchor,
+            right: errorMessageView.rightAnchor,
+            paddingTop: 8,
+            paddingLeft: 8,
+            paddingBottom: 8,
+            paddingRight: 8
+        )
         
         view.addSubview(stackView)
         stackView.anchor(
@@ -159,7 +182,9 @@ class SignupViewController: UIViewController {
         
         AuthSerivce.createUser(withEmail: email, password: password) { (data, error) in
             if let error = error {
-                print("DEBUG: AuthSerivce.createUser error is \(error.localizedDescription)")
+                self.errorMessageView.isHidden = false
+                self.errorMessageLabel.text = error.localizedDescription
+                return
             }
             
             guard let uid = data?.user.uid else { return }
@@ -167,14 +192,21 @@ class SignupViewController: UIViewController {
             
             UserService.creatUser(withUid: uid, values: user!) { (error, ref) in
                 if let error = error {
-                    print("DEBUG: UserService.creatUser is \(error.localizedDescription)")
+                    self.errorMessageView.isHidden = false
+                    self.errorMessageLabel.text = error.localizedDescription
                 }
+                
+                guard let mainTabViewController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController as? MainTabViewController else { return }
+                mainTabViewController.configureUI()
+                
+                self.dismiss(animated: true, completion: nil)
             }
         }
 
     }
     
     @objc func clickGotoLoginButton(_ sender: UIButton) {
+        errorMessageView.isHidden = true
         navigationController?.popToRootViewController(animated: true)
     }
 }
