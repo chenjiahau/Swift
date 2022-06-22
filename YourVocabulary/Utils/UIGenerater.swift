@@ -34,20 +34,9 @@ extension UIGenerater {
 }
 
 
-// MARK: General
+// MARK: container, textField, button
 
 extension UIGenerater {
-    static func makeTextField(placeholer: String, isSecureTextEntry: Bool = false) -> UITextField {
-        let textField = UITextField()
-        
-        textField.placeholder = placeholer
-        textField.autocapitalizationType = .none
-        textField.textColor = .appMainColor
-        textField.font = UIFont.systemFont(ofSize: 18)
-        textField.isSecureTextEntry = isSecureTextEntry
-        
-        return textField
-    }
     
     static func makeInputContainer(systemName: String, textField: UITextField) -> UIView {
         let view = UIView()
@@ -92,6 +81,18 @@ extension UIGenerater {
         )
         
         return view
+    }
+    
+    static func makeTextField(placeholer: String, isSecureTextEntry: Bool = false) -> UITextField {
+        let textField = UITextField()
+        
+        textField.placeholder = placeholer
+        textField.autocapitalizationType = .none
+        textField.textColor = .appMainColor
+        textField.font = UIFont.systemFont(ofSize: 18)
+        textField.isSecureTextEntry = isSecureTextEntry
+        
+        return textField
     }
     
     static func makeSubmitButton(title: String) -> UIButton {

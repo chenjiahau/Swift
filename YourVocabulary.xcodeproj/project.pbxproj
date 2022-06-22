@@ -13,13 +13,14 @@
 		6B0B6925285D78D800AC8EAE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B6924285D78D800AC8EAE /* SettingViewController.swift */; };
 		6B0B6928285D791400AC8EAE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B6927285D791400AC8EAE /* UIView.swift */; };
 		6B0B692A285D792100AC8EAE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B6929285D792100AC8EAE /* UIColor.swift */; };
-		6B0B692C285D795E00AC8EAE /* SubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692B285D795E00AC8EAE /* SubjectViewController.swift */; };
-		6B0B692E285D797400AC8EAE /* SubjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692D285D797400AC8EAE /* SubjectCell.swift */; };
+		6B0B692C285D795E00AC8EAE /* SubjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692B285D795E00AC8EAE /* SubjectListViewController.swift */; };
+		6B0B692E285D797400AC8EAE /* SubjectItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692D285D797400AC8EAE /* SubjectItemCell.swift */; };
 		6B0B6930285D798D00AC8EAE /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692F285D798D00AC8EAE /* Subject.swift */; };
 		6B0B6932285D7B2100AC8EAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B6931285D7B2100AC8EAE /* MainViewController.swift */; };
 		6B336D66285E9B17009A0C72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B336D65285E9B17009A0C72 /* GoogleService-Info.plist */; };
 		6B336D69285E9EA6009A0C72 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B336D68285E9EA6009A0C72 /* LoginViewController.swift */; };
 		6B336D6B285E9EB2009A0C72 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B336D6A285E9EB2009A0C72 /* SignupViewController.swift */; };
+		6B8958A3286297800051EBA5 /* SubjectAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8958A2286297800051EBA5 /* SubjectAddViewController.swift */; };
 		6B8D02C7285FFA52005DA577 /* UIGenerater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02C6285FFA52005DA577 /* UIGenerater.swift */; };
 		6B8D02CA28603ACE005DA577 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02C928603ACE005DA577 /* AuthService.swift */; };
 		6B8D02CE2860762C005DA577 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02CD2860762C005DA577 /* User.swift */; };
@@ -42,13 +43,14 @@
 		6B0B6924285D78D800AC8EAE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		6B0B6927285D791400AC8EAE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		6B0B6929285D792100AC8EAE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		6B0B692B285D795E00AC8EAE /* SubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewController.swift; sourceTree = "<group>"; };
-		6B0B692D285D797400AC8EAE /* SubjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCell.swift; sourceTree = "<group>"; };
+		6B0B692B285D795E00AC8EAE /* SubjectListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListViewController.swift; sourceTree = "<group>"; };
+		6B0B692D285D797400AC8EAE /* SubjectItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectItemCell.swift; sourceTree = "<group>"; };
 		6B0B692F285D798D00AC8EAE /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		6B0B6931285D7B2100AC8EAE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6B336D65285E9B17009A0C72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B336D68285E9EA6009A0C72 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6B336D6A285E9EB2009A0C72 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		6B8958A2286297800051EBA5 /* SubjectAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectAddViewController.swift; sourceTree = "<group>"; };
 		6B8D02C6285FFA52005DA577 /* UIGenerater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGenerater.swift; sourceTree = "<group>"; };
 		6B8D02C928603ACE005DA577 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		6B8D02CD2860762C005DA577 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -91,9 +93,8 @@
 		6B0B6920285D788500AC8EAE /* Study */ = {
 			isa = PBXGroup;
 			children = (
+				6B8958A02862968D0051EBA5 /* Subject */,
 				6B0B6922285D78C400AC8EAE /* StudyViewController.swift */,
-				6B0B692B285D795E00AC8EAE /* SubjectViewController.swift */,
-				6B0B692D285D797400AC8EAE /* SubjectCell.swift */,
 			);
 			path = Study;
 			sourceTree = "<group>";
@@ -122,6 +123,32 @@
 				6B336D6A285E9EB2009A0C72 /* SignupViewController.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		6B8958A02862968D0051EBA5 /* Subject */ = {
+			isa = PBXGroup;
+			children = (
+				6B8958A4286297D70051EBA5 /* List */,
+				6B8958A1286297680051EBA5 /* Add */,
+			);
+			path = Subject;
+			sourceTree = "<group>";
+		};
+		6B8958A1286297680051EBA5 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				6B8958A2286297800051EBA5 /* SubjectAddViewController.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		6B8958A4286297D70051EBA5 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				6B0B692B285D795E00AC8EAE /* SubjectListViewController.swift */,
+				6B0B692D285D797400AC8EAE /* SubjectItemCell.swift */,
+			);
+			path = List;
 			sourceTree = "<group>";
 		};
 		6B8D02C5285FFA2B005DA577 /* Utils */ = {
@@ -338,18 +365,19 @@
 			files = (
 				6B0B6928285D791400AC8EAE /* UIView.swift in Sources */,
 				6B0B6932285D7B2100AC8EAE /* MainViewController.swift in Sources */,
-				6B0B692E285D797400AC8EAE /* SubjectCell.swift in Sources */,
+				6B0B692E285D797400AC8EAE /* SubjectItemCell.swift in Sources */,
 				6B336D6B285E9EB2009A0C72 /* SignupViewController.swift in Sources */,
 				6BD6D4392841A7670006A92C /* MainTabViewController.swift in Sources */,
 				6B8D02D628607BCC005DA577 /* DBRef.swift in Sources */,
 				6BD6D4352841A7670006A92C /* AppDelegate.swift in Sources */,
 				6B0B6930285D798D00AC8EAE /* Subject.swift in Sources */,
 				6B8D02CA28603ACE005DA577 /* AuthService.swift in Sources */,
+				6B8958A3286297800051EBA5 /* SubjectAddViewController.swift in Sources */,
 				6B0B691F285D785900AC8EAE /* Constant.swift in Sources */,
 				6B0B692A285D792100AC8EAE /* UIColor.swift in Sources */,
 				6BD6D43F2841A7670006A92C /* YourVocabulary.xcdatamodeld in Sources */,
 				6B0B6923285D78C400AC8EAE /* StudyViewController.swift in Sources */,
-				6B0B692C285D795E00AC8EAE /* SubjectViewController.swift in Sources */,
+				6B0B692C285D795E00AC8EAE /* SubjectListViewController.swift in Sources */,
 				6B8D02D428607B60005DA577 /* UserService.swift in Sources */,
 				6B0B6925285D78D800AC8EAE /* SettingViewController.swift in Sources */,
 				6B8D02CE2860762C005DA577 /* User.swift in Sources */,

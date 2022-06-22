@@ -17,8 +17,6 @@ class StudyViewController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = Constant.iconSize / 2
         imageView.layer.masksToBounds = true
-        // imageView.layer.borderColor = UIColor.appSecondColor?.cgColor
-        // imageView.layer.borderWidth = 2
         
         return imageView
     }()
@@ -78,8 +76,8 @@ class StudyViewController: UIViewController {
         return view
     }()
     
-    private lazy var subjectView: SubjectViewController = {
-        let view = SubjectViewController()
+    private lazy var subjectView: SubjectListViewController = {
+        let view = SubjectListViewController()
         
         return view
     }()
@@ -166,6 +164,7 @@ class StudyViewController: UIViewController {
     }
     
     // MARK: Selectors
+    
     @objc func logUserOut(_ sender: UIButton) {
         do {
             try Auth.auth().signOut()
@@ -182,23 +181,9 @@ class StudyViewController: UIViewController {
     }
     
     @objc func addSubject(_ sender: UIButton) {
-        print("addSubject")
+        let navigation = UINavigationController(rootViewController: SubjectAddViewController())
+        
+        navigation.modalPresentationStyle = .fullScreen
+        self.present(navigation, animated: true)
     }
 }
-
-
-//extension StudyViewController {
-//    // MARK: Dummy data
-//    func makeDummyData() {
-//        subjectList.append(Subject(Title: "Dummy Lession 01"))
-//        subjectList.append(Subject(Title: "Dummy Lession 02"))
-//        subjectList.append(Subject(Title: "Dummy Lession 03"))
-//        subjectList.append(Subject(Title: "Dummy Lession 04"))
-//        subjectList.append(Subject(Title: "Dummy Lession 05"))
-//        subjectList.append(Subject(Title: "Dummy Lession 06"))
-//        subjectList.append(Subject(Title: "Dummy Lession 07"))
-//        subjectList.append(Subject(Title: "Dummy Lession 08"))
-//        subjectList.append(Subject(Title: "Dummy Lession 09"))
-//        subjectList.append(Subject(Title: "Dummy Lession 10"))
-//    }
-//}
