@@ -8,7 +8,6 @@
 import Foundation
 
 struct Subject {
-    var Title: String
-    var vocableNumber: Int = 0
+    var subject: String = ""
     var createdDate: Date = Date()
 }

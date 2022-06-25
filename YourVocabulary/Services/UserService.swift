@@ -16,4 +16,12 @@ struct UserService {
             callback(error, ref)
         }
     }
+    
+    static func getUser(withUid uid: String, callback: @escaping (DataSnapshot?) -> ()) {
+        let user = DBRef.User.child(uid)
+        
+        user.observeSingleEvent(of: .value) { snapshot in
+            callback(snapshot)
+        }
+    }
 }

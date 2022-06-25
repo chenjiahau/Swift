@@ -11,6 +11,11 @@ import Firebase
 class MainTabViewController: UITabBarController {
     
     // MARK: Properties
+    private var user: User? {
+        didSet {
+            self.configureUI()
+        }
+    }
     
     // MARK: Lifecycle
 
@@ -23,7 +28,7 @@ class MainTabViewController: UITabBarController {
     // MARK: Helpers
     
     func configureUI() {
-        let studyVC = StudyViewController()
+        let studyVC = StudyViewController(user: user!)
         let studyNav = generateNavigationController(title: "Subject", image: UIImage(systemName: "calendar.circle"), viewController: studyVC)
         
         let settingVC = SettingViewController()
@@ -55,7 +60,13 @@ class MainTabViewController: UITabBarController {
                 self.present(navigation, animated: true)
             }
         } else {
-            configureUI()
+            guard let uid = Auth.auth().currentUser?.uid else { return }
+            UserService.getUser(withUid: uid) { snapshot in
+                let value = snapshot?.value as? NSDictionary
+                let email = value?["email"] as? String ?? ""
+                let username = value?["username"] as? String ?? ""
+                self.user = User(email: email, username: username)
+            }
         }
     }
 }

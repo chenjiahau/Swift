@@ -11,6 +11,8 @@ import Firebase
 class StudyViewController: UIViewController {
     
     // MARK: UI properties
+    private let user: User
+    
     private let appIcon: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "AppIcon"))
         
@@ -47,6 +49,16 @@ class StudyViewController: UIViewController {
         )
         
         return button
+    }()
+    
+    private lazy var greetingLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "Hi! \(self.user.username)"
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .appSecondColor
+        
+        return label
     }()
     
     private lazy var logoutButton: UIButton = {
@@ -87,10 +99,18 @@ class StudyViewController: UIViewController {
     private var subjectList: [Subject] = []
     
     // MARK: Lifecycle
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureUI()
     }
     
@@ -150,13 +170,24 @@ class StudyViewController: UIViewController {
             height: 2
         )
         
+        view.addSubview(greetingLabel)
+        greetingLabel.anchor(
+            top: dividerView.bottomAnchor,
+            left: view.leftAnchor,
+            right: view.rightAnchor,
+            paddingTop: 8,
+            paddingLeft: 8,
+            paddingBottom: 0,
+            paddingRight: 0
+        )
+        
         view.addSubview(subjectView)
         subjectView.anchor(
-            top: dividerView.bottomAnchor,
+            top: greetingLabel.bottomAnchor,
             left: view.leftAnchor,
             bottom: view.bottomAnchor,
             right: view.rightAnchor,
-            paddingTop: 0,
+            paddingTop: 12,
             paddingLeft: 0,
             paddingBottom: 0,
             paddingRight: 0
@@ -181,7 +212,7 @@ class StudyViewController: UIViewController {
     }
     
     @objc func addSubject(_ sender: UIButton) {
-        let navigation = UINavigationController(rootViewController: SubjectAddViewController())
+        let navigation = UINavigationController(rootViewController: SubjectAddViewController(user: user))
         
         navigation.modalPresentationStyle = .fullScreen
         self.present(navigation, animated: true)

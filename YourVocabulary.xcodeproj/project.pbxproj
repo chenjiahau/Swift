@@ -27,6 +27,9 @@
 		6B8D02D428607B60005DA577 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02D328607B60005DA577 /* UserService.swift */; };
 		6B8D02D628607BCC005DA577 /* DBRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02D528607BCC005DA577 /* DBRef.swift */; };
 		6B8D02D828607E7E005DA577 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02D728607E7E005DA577 /* Convertable.swift */; };
+		6BC06FF928669CD100CD89F7 /* SubjecTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC06FF828669CD100CD89F7 /* SubjecTextView.swift */; };
+		6BC06FFB2866AB7900CD89F7 /* VocabularyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC06FFA2866AB7900CD89F7 /* VocabularyCell.swift */; };
+		6BC06FFF2866AEC300CD89F7 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC06FFE2866AEC300CD89F7 /* Vocabulary.swift */; };
 		6BD6D4352841A7670006A92C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6D4342841A7670006A92C /* AppDelegate.swift */; };
 		6BD6D4372841A7670006A92C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6D4362841A7670006A92C /* SceneDelegate.swift */; };
 		6BD6D4392841A7670006A92C /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6D4382841A7670006A92C /* MainTabViewController.swift */; };
@@ -57,6 +60,9 @@
 		6B8D02D328607B60005DA577 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		6B8D02D528607BCC005DA577 /* DBRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRef.swift; sourceTree = "<group>"; };
 		6B8D02D728607E7E005DA577 /* Convertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
+		6BC06FF828669CD100CD89F7 /* SubjecTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjecTextView.swift; sourceTree = "<group>"; };
+		6BC06FFA2866AB7900CD89F7 /* VocabularyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCell.swift; sourceTree = "<group>"; };
+		6BC06FFE2866AEC300CD89F7 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
 		6BD6D4312841A7670006A92C /* YourVocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourVocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BD6D4342841A7670006A92C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BD6D4362841A7670006A92C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				6B8958A2286297800051EBA5 /* SubjectAddViewController.swift */,
+				6BC06FFA2866AB7900CD89F7 /* VocabularyCell.swift */,
+				6BC06FF828669CD100CD89F7 /* SubjecTextView.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -206,6 +214,7 @@
 			children = (
 				6B0B692F285D798D00AC8EAE /* Subject.swift */,
 				6B8D02CD2860762C005DA577 /* User.swift */,
+				6BC06FFE2866AEC300CD89F7 /* Vocabulary.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -360,7 +369,9 @@
 				6B0B692E285D797400AC8EAE /* SubjectItemCell.swift in Sources */,
 				6B336D6B285E9EB2009A0C72 /* SignupViewController.swift in Sources */,
 				6BD6D4392841A7670006A92C /* MainTabViewController.swift in Sources */,
+				6BC06FF928669CD100CD89F7 /* SubjecTextView.swift in Sources */,
 				6B8D02D628607BCC005DA577 /* DBRef.swift in Sources */,
+				6BC06FFB2866AB7900CD89F7 /* VocabularyCell.swift in Sources */,
 				6BD6D4352841A7670006A92C /* AppDelegate.swift in Sources */,
 				6B0B6930285D798D00AC8EAE /* Subject.swift in Sources */,
 				6B8D02CA28603ACE005DA577 /* AuthService.swift in Sources */,
@@ -369,6 +380,7 @@
 				6B0B692A285D792100AC8EAE /* UIColor.swift in Sources */,
 				6BD6D43F2841A7670006A92C /* YourVocabulary.xcdatamodeld in Sources */,
 				6B0B6923285D78C400AC8EAE /* StudyViewController.swift in Sources */,
+				6BC06FFF2866AEC300CD89F7 /* Vocabulary.swift in Sources */,
 				6B0B692C285D795E00AC8EAE /* SubjectListViewController.swift in Sources */,
 				6B8D02D428607B60005DA577 /* UserService.swift in Sources */,
 				6B0B6925285D78D800AC8EAE /* SettingViewController.swift in Sources */,
