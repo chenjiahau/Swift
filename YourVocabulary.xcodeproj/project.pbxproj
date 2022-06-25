@@ -95,6 +95,8 @@
 			children = (
 				6B8958A02862968D0051EBA5 /* Subject */,
 				6B0B6922285D78C400AC8EAE /* StudyViewController.swift */,
+				6B0B692B285D795E00AC8EAE /* SubjectListViewController.swift */,
+				6B0B692D285D797400AC8EAE /* SubjectItemCell.swift */,
 			);
 			path = Study;
 			sourceTree = "<group>";
@@ -128,7 +130,6 @@
 		6B8958A02862968D0051EBA5 /* Subject */ = {
 			isa = PBXGroup;
 			children = (
-				6B8958A4286297D70051EBA5 /* List */,
 				6B8958A1286297680051EBA5 /* Add */,
 			);
 			path = Subject;
@@ -140,15 +141,6 @@
 				6B8958A2286297800051EBA5 /* SubjectAddViewController.swift */,
 			);
 			path = Add;
-			sourceTree = "<group>";
-		};
-		6B8958A4286297D70051EBA5 /* List */ = {
-			isa = PBXGroup;
-			children = (
-				6B0B692B285D795E00AC8EAE /* SubjectListViewController.swift */,
-				6B0B692D285D797400AC8EAE /* SubjectItemCell.swift */,
-			);
-			path = List;
 			sourceTree = "<group>";
 		};
 		6B8D02C5285FFA2B005DA577 /* Utils */ = {
