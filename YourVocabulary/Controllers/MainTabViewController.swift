@@ -9,18 +9,45 @@ import UIKit
 import Firebase
 
 class MainTabViewController: UITabBarController {
-    
     // MARK: Properties
+    private let loadingLabel: UILabel = {
+        let label = UIGenerater.makeLabel(
+            withText: "Loading",
+            font: UIFont.systemFont(ofSize: 24),
+            color: .white
+        )
+        
+        label.textAlignment = .center
+        return label
+    }()
+    
     private var user: User? {
         didSet {
+            self.loadingLabel.isHidden = true
             self.configureUI()
         }
     }
     
     // MARK: Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .appMainColor
+        view.addSubview(loadingLabel)
+        loadingLabel.anchor(
+            top: view.topAnchor,
+            left: view.leftAnchor,
+            bottom: view.bottomAnchor,
+            right: view.rightAnchor,
+            paddingTop: 0,
+            paddingLeft: 0,
+            paddingBottom: 0,
+            paddingRight: 0
+        )
+        
+        UITabBar.appearance().tintColor = .white
+        UITabBar.appearance().backgroundColor = UIColor.appMainColor
+        UITabBar.appearance().unselectedItemTintColor = .gray
         
         checkUser()
     }
@@ -35,10 +62,6 @@ class MainTabViewController: UITabBarController {
         let settingNav = generateNavigationController(title: "Setting", image: UIImage(systemName: "square.grid.3x3"), viewController: settingVC)
         
         viewControllers = [studyNav, settingNav]
-
-        UITabBar.appearance().tintColor = .white
-        UITabBar.appearance().backgroundColor = UIColor.appMainColor
-        UITabBar.appearance().unselectedItemTintColor = .gray
     }
     
     func generateNavigationController(title: String, image: UIImage?, viewController: UIViewController) -> UINavigationController {

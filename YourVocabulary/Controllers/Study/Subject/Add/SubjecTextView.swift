@@ -12,35 +12,35 @@ class SubjectTextView: UITextView {
     // MARK: Properties
     
     private let placeholderLabel1: UILabel = {
-        let label = UILabel()
+        let label = UIGenerater.makeLabel(
+            withText: "You can write down any subject",
+            font: UIFont.systemFont(ofSize: 16),
+            color: .gray
+        )
         
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .gray
         label.layer.opacity = 0.5
-        label.text = "You can write down any subject"
-        
         return label
     }()
     
     private let placeholderLabel2: UILabel = {
-        let label = UILabel()
+        let label = UIGenerater.makeLabel(
+            withText: "You've learned recently",
+            font: UIFont.systemFont(ofSize: 16),
+            color: .gray
+        )
         
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .gray
         label.layer.opacity = 0.5
-        label.text = "You've learned recently"
-        
         return label
     }()
     
     private let placeholderLabel3: UILabel = {
-        let label = UILabel()
+        let label = UIGenerater.makeLabel(
+            withText: "Or you have interested",
+            font: UIFont.systemFont(ofSize: 16),
+            color: .gray
+        )
         
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .gray
         label.layer.opacity = 0.5
-        label.text = "Or you have interested"
-        
         return label
     }()
     

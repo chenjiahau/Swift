@@ -63,11 +63,11 @@ class SubjectAddViewController: UIViewController {
     }()
     
     private let subjectTitle: UILabel = {
-        let label = UILabel()
-        
-        label.text = "Subject"
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.textColor = .appSecondColor
+        let label = UIGenerater.makeLabel(
+            withText: "Subject",
+            font: UIFont.systemFont(ofSize: 24),
+            color: UIColor.appSecondColor!
+        )
         
         return label
     }()
@@ -86,11 +86,11 @@ class SubjectAddViewController: UIViewController {
     }()
     
     private let vocabularyTitle: UILabel = {
-        let label = UILabel()
-        
-        label.text = "Vocabulary"
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.textColor = .appSecondColor
+        let label = UIGenerater.makeLabel(
+            withText: "Vocabulary",
+            font: UIFont.systemFont(ofSize: 24),
+            color: UIColor.appSecondColor!
+        )
         
         return label
     }()
@@ -236,6 +236,9 @@ class SubjectAddViewController: UIViewController {
         )
         
         vocabularyList.append(Vocabulary())
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     // MARK: Selector
@@ -251,6 +254,10 @@ class SubjectAddViewController: UIViewController {
     @objc func handleAddVocabulary(_ sender: UIButton) {
         vocabularyList.append(Vocabulary())
         vocabularyCollectionView.reloadData()
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 

@@ -38,6 +38,16 @@ extension UIGenerater {
 
 extension UIGenerater {
     
+    static func makeLabel(withText text: String, font: UIFont, color: UIColor) -> UILabel {
+        let label = UILabel()
+        
+        label.text = text
+        label.textColor = color
+        label.font = font
+        
+        return label
+    }
+    
     static func makeInputContainer(systemName: String, textField: UITextField) -> UIView {
         let view = UIView()
         view.heightAnchor.constraint(equalToConstant: 48).isActive = true

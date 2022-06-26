@@ -24,11 +24,13 @@ class StudyViewController: UIViewController {
     }()
     
     private let appTitle: UILabel = {
-        let label = UILabel()
+        let label = UIGenerater.makeLabel(
+            withText: "",
+            font: UIFont.systemFont(ofSize: 24),
+            color: UIColor.appMainColor!
+        )
         
-        label.font = UIFont.systemFont(ofSize: 24)
-        label.textColor = .appMainColor
-        
+        label.layer.opacity = 0.5
         return label
     }()
     

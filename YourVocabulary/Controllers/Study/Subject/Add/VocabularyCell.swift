@@ -18,13 +18,13 @@ class VocabularyCell: UICollectionViewCell {
     }
     
     private lazy var indexLabel: UILabel = {
-        let label = UILabel()
+        let label = UIGenerater.makeLabel(
+            withText: "",
+            font: UIFont.systemFont(ofSize: 18),
+            color: UIColor.appMainColor!
+        )
         
-        label.font = UIFont.systemFont(ofSize: 18)
-        
-        label.textColor = .appMainColor
         label.layer.opacity = 0.5
-        
         return label
     }()
     
