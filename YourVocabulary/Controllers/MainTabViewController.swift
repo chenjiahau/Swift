@@ -24,7 +24,7 @@ class MainTabViewController: UITabBarController {
     private var user: User? {
         didSet {
             self.loadingLabel.isHidden = true
-            self.configureUI()
+            self.configureUI(user!)
         }
     }
     
@@ -54,8 +54,8 @@ class MainTabViewController: UITabBarController {
     
     // MARK: Helpers
     
-    func configureUI() {
-        let studyVC = StudyViewController(user: user!)
+    func configureUI(_ user: User) {
+        let studyVC = StudyViewController(user: user)
         let studyNav = generateNavigationController(title: "Subject", image: UIImage(systemName: "calendar.circle"), viewController: studyVC)
         
         let settingVC = SettingViewController()
