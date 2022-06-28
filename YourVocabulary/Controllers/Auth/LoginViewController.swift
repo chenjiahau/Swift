@@ -21,12 +21,12 @@ class LoginViewController: UIViewController {
         return imageView
     }()
     
-    private var errorMessageView: UIView = {
+    private lazy var errorMessageView: UIView = {
         let view = UIGenerater.makeMessageView()
         return view
     }()
     
-    private var errorMessageLabel: UILabel = {
+    private lazy var errorMessageLabel: UILabel = {
         let label = UIGenerater.makeErrorMessagelabel()
         return label
     }()

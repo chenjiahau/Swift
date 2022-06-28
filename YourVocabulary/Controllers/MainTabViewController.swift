@@ -10,20 +10,9 @@ import Firebase
 
 class MainTabViewController: UITabBarController {
     // MARK: Properties
-    private let loadingLabel: UILabel = {
-        let label = UIGenerater.makeLabel(
-            withText: "Loading",
-            font: UIFont.systemFont(ofSize: 24),
-            color: .white
-        )
-        
-        label.textAlignment = .center
-        return label
-    }()
     
     private var user: User? {
         didSet {
-            self.loadingLabel.isHidden = true
             self.configureUI(user!)
         }
     }
@@ -33,17 +22,6 @@ class MainTabViewController: UITabBarController {
         super.viewDidLoad()
         
         view.backgroundColor = .appMainColor
-        view.addSubview(loadingLabel)
-        loadingLabel.anchor(
-            top: view.topAnchor,
-            left: view.leftAnchor,
-            bottom: view.bottomAnchor,
-            right: view.rightAnchor,
-            paddingTop: 0,
-            paddingLeft: 0,
-            paddingBottom: 0,
-            paddingRight: 0
-        )
         
         UITabBar.appearance().tintColor = .white
         UITabBar.appearance().backgroundColor = UIColor.appMainColor
@@ -83,13 +61,24 @@ class MainTabViewController: UITabBarController {
                 self.present(navigation, animated: true)
             }
         } else {
-            guard let uid = Auth.auth().currentUser?.uid else { return }
-            UserService.getUser(withUid: uid) { snapshot in
-                let value = snapshot?.value as? NSDictionary
-                let email = value?["email"] as? String ?? ""
-                let username = value?["username"] as? String ?? ""
-                self.user = User(email: email, username: username)
+            DispatchQueue.main.async {
+                let navigation = UINavigationController(rootViewController: LoadingViewController())
+                
+                navigation.modalPresentationStyle = .fullScreen
+                self.present(navigation, animated: true)
+                
+                guard let uid = Auth.auth().currentUser?.uid else { return }
+                UserService.getUser(withUid: uid) { snapshot in
+                    let value = snapshot?.value as? NSDictionary
+                    let email = value?["email"] as? String ?? ""
+                    let username = value?["username"] as? String ?? ""
+                    self.user = User(email: email, username: username)
+                    
+                    navigation.dismiss(animated: true)
+                }
             }
+            
+            
         }
     }
 }
