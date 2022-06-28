@@ -155,12 +155,9 @@ class LoginViewController: UIViewController {
             
             guard let uid = Auth.auth().currentUser?.uid else { return }
             UserService.getUser(withUid: uid) { snapshot in
-                let value = snapshot?.value as? NSDictionary
-                let email = value?["email"] as? String ?? ""
-                let username = value?["username"] as? String ?? ""
-                let user = User(email: email, username: username)
-                
                 guard let mainTabViewController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController as? MainTabViewController else { return }
+                
+                let user = User.createUser(snapshot?.value as? NSDictionary)
                 mainTabViewController.configureUI(user)
                 
                 self.dismiss(animated: true, completion: nil)

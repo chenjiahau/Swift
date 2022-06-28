@@ -62,23 +62,17 @@ class MainTabViewController: UITabBarController {
             }
         } else {
             DispatchQueue.main.async {
-                let navigation = UINavigationController(rootViewController: LoadingViewController())
+                guard let uid = Auth.auth().currentUser?.uid else { return }
                 
+                let navigation = UINavigationController(rootViewController: LoadingViewController())
                 navigation.modalPresentationStyle = .fullScreen
                 self.present(navigation, animated: true)
                 
-                guard let uid = Auth.auth().currentUser?.uid else { return }
                 UserService.getUser(withUid: uid) { snapshot in
-                    let value = snapshot?.value as? NSDictionary
-                    let email = value?["email"] as? String ?? ""
-                    let username = value?["username"] as? String ?? ""
-                    self.user = User(email: email, username: username)
-                    
+                    self.user = User.createUser(snapshot?.value as? NSDictionary)
                     navigation.dismiss(animated: true)
                 }
             }
-            
-            
         }
     }
 }
