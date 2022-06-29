@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol VocabularyCellDelegate {
+    func handleDeleteVocabulary(withIndex index: Int)
+}
+
 class VocabularyCell: UICollectionViewCell {
     
     // MARK: Properties
@@ -16,6 +20,7 @@ class VocabularyCell: UICollectionViewCell {
             configureUI()
         }
     }
+    var delegate: VocabularyCellDelegate?
     
     private lazy var indexLabel: UILabel = {
         let label = UIGenerater.makeLabel(
@@ -87,6 +92,6 @@ class VocabularyCell: UICollectionViewCell {
     // MARK: Selector
     
     @objc func handleDeleteVocabulary(_ sender: UIButton) {
-        print("handleDeleteVocabulary", index)
+        delegate?.handleDeleteVocabulary(withIndex: index)
     }
 }

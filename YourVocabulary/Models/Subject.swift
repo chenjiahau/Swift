@@ -9,5 +9,6 @@ import Foundation
 
 struct Subject {
     var subject: String = ""
+    var vocabularies: [Vocabulary] = []
     var createdDate: Date = Date()
 }

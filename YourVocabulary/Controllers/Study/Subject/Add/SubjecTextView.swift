@@ -43,6 +43,8 @@ class SubjectTextView: UITextView {
         label.layer.opacity = 0.5
         return label
     }()
+
+    // MARK: Lifecycle
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)

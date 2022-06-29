@@ -124,7 +124,6 @@ class SubjectAddViewController: UIViewController {
     }()
     
     private var subject: Subject = Subject()
-    private var vocabularyList: [Vocabulary] = []
     
     // MARK: Lifecycle
     
@@ -235,12 +234,19 @@ class SubjectAddViewController: UIViewController {
             paddingRight: 0
         )
         
-        vocabularyList.append(Vocabulary(canDelete: false))
+        subject.vocabularies.append(Vocabulary(canDelete: false))
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleTextInputChange),
+            name: SubjectTextView.textDidChangeNotification,
+            object: nil
+        )
     }
-    
+
     // MARK: Selector
     
     @objc func handleBack(_ sender: UIButton) {
@@ -251,11 +257,16 @@ class SubjectAddViewController: UIViewController {
         dismiss(animated: true)
     }
 
+    @objc func handleTextInputChange() {
+        guard let text = subjectTextView.text else { return }
+        subject.subject = text
+    }
+
     @objc func handleAddVocabulary(_ sender: UIButton) {
-        vocabularyList.append(Vocabulary())
+        subject.vocabularies.append(Vocabulary())
         vocabularyCollectionView.reloadData()
         vocabularyCollectionView.scrollToItem(
-            at: IndexPath(item: vocabularyList.count - 1, section: 0),
+            at: IndexPath(item: subject.vocabularies.count - 1, section: 0),
             at: .centeredVertically,
             animated: true
         )
@@ -276,7 +287,7 @@ extension SubjectAddViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return vocabularyList.count
+        return subject.vocabularies.count
     }
 }
 
@@ -289,7 +300,8 @@ extension SubjectAddViewController: UICollectionViewDelegate {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VocabualryCell", for: indexPath) as! VocabularyCell
 
         cell.index = indexPath.row
-        cell.vocabulary = vocabularyList[indexPath.row]
+        cell.vocabulary = subject.vocabularies[indexPath.row]
+        cell.delegate = self
         
         return cell
     }
@@ -301,5 +313,15 @@ extension SubjectAddViewController: UICollectionViewDelegate {
 extension SubjectAddViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width - 12, height: 120)
+    }
+}
+
+
+// MARK: VocabularyCellDelegate
+
+extension SubjectAddViewController: VocabularyCellDelegate {
+    func handleDeleteVocabulary(withIndex index: Int) {
+        subject.vocabularies.remove(at: index)
+        vocabularyCollectionView.reloadData()
     }
 }
