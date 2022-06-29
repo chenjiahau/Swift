@@ -235,7 +235,7 @@ class SubjectAddViewController: UIViewController {
             paddingRight: 0
         )
         
-        vocabularyList.append(Vocabulary())
+        vocabularyList.append(Vocabulary(canDelete: false))
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -254,6 +254,11 @@ class SubjectAddViewController: UIViewController {
     @objc func handleAddVocabulary(_ sender: UIButton) {
         vocabularyList.append(Vocabulary())
         vocabularyCollectionView.reloadData()
+        vocabularyCollectionView.scrollToItem(
+            at: IndexPath(item: vocabularyList.count - 1, section: 0),
+            at: .centeredVertically,
+            animated: true
+        )
     }
     
     @objc func dismissKeyboard() {
@@ -282,7 +287,7 @@ extension SubjectAddViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VocabualryCell", for: indexPath) as! VocabularyCell
-        
+
         cell.index = indexPath.row
         cell.vocabulary = vocabularyList[indexPath.row]
         

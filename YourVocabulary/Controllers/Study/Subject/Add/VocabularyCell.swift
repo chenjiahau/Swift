@@ -10,7 +10,7 @@ import UIKit
 class VocabularyCell: UICollectionViewCell {
     
     // MARK: Properties
-    var index: Int?
+    var index: Int = 0
     var vocabulary: Vocabulary? {
         didSet {
             configureUI()
@@ -28,6 +28,20 @@ class VocabularyCell: UICollectionViewCell {
         return label
     }()
     
+    private lazy var deleteButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        button.tintColor = .red
+        button.setImage(UIImage(systemName: "trash"), for: .normal)
+        button.addTarget(
+            self,
+            action: #selector(handleDeleteVocabulary(_:)),
+            for: .touchUpInside
+        )
+        
+        return button
+    }()
+    
     // MARK: Lifecycle
     
     override init(frame: CGRect) {
@@ -40,15 +54,39 @@ class VocabularyCell: UICollectionViewCell {
     
     // MARK: Helpers
     func configureUI() {
+        guard let vocabulary = vocabulary else { return }
+
         backgroundColor = UIColor.appSecondColor?.withAlphaComponent(0.1)
         
         addSubview(indexLabel)
-        indexLabel.text = "# \(String(index! + 1))"
+        indexLabel.text = "# \(String(index + 1))"
         indexLabel.anchor(
             top: topAnchor,
             left: leftAnchor,
             paddingTop: 8,
             paddingLeft: 12
         )
+        
+        addSubview(deleteButton)
+        deleteButton.anchor(
+            top: topAnchor,
+            right: rightAnchor,
+            paddingTop: 8,
+            paddingRight: 3,
+            width: 20,
+            height: 20
+        )
+        
+        if !vocabulary.canDelete {
+            deleteButton.isHidden = true
+        } else {
+            deleteButton.isHidden = false
+        }
+    }
+    
+    // MARK: Selector
+    
+    @objc func handleDeleteVocabulary(_ sender: UIButton) {
+        print("handleDeleteVocabulary", index)
     }
 }
