@@ -261,7 +261,7 @@ class SubjectAddViewController: UIViewController {
         guard let text = subjectTextView.text else { return }
         subject.subject = text
     }
-
+    
     @objc func handleAddVocabulary(_ sender: UIButton) {
         subject.vocabularies.append(Vocabulary())
         vocabularyCollectionView.reloadData()
@@ -312,7 +312,7 @@ extension SubjectAddViewController: UICollectionViewDelegate {
 
 extension SubjectAddViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 12, height: 120)
+        return CGSize(width: view.frame.width - 12, height: 68)
     }
 }
 
@@ -322,6 +322,11 @@ extension SubjectAddViewController: UICollectionViewDelegateFlowLayout {
 extension SubjectAddViewController: VocabularyCellDelegate {
     func handleDeleteVocabulary(withIndex index: Int) {
         subject.vocabularies.remove(at: index)
+        vocabularyCollectionView.reloadData()
+    }
+
+    func handleChangeVocabulary(withIndex index: Int, vocabulary: String) {
+        subject.vocabularies[index].vocabulary = vocabulary
         vocabularyCollectionView.reloadData()
     }
 }

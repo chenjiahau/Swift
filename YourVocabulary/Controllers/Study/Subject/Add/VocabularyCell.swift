@@ -9,6 +9,7 @@ import UIKit
 
 protocol VocabularyCellDelegate {
     func handleDeleteVocabulary(withIndex index: Int)
+    func handleChangeVocabulary(withIndex index: Int, vocabulary: String)
 }
 
 class VocabularyCell: UICollectionViewCell {
@@ -46,6 +47,23 @@ class VocabularyCell: UICollectionViewCell {
         
         return button
     }()
+
+    private lazy var vocabularyTextField: UITextField = {
+        let textField = UIGenerater.makeTextField(placeholer: "")
+
+        textField.backgroundColor = .white
+        textField.layer.borderColor = UIColor.appMainColor?.cgColor
+        textField.layer.cornerRadius = 38 / 2
+        textField.layer.borderWidth = 1
+        textField.addPadding(.both(20))
+        textField.addTarget(
+            self,
+            action: #selector(handleTextFieldChange(_:)),
+            for: .editingDidEnd
+        )
+
+        return textField
+    }()
     
     // MARK: Lifecycle
     
@@ -60,7 +78,6 @@ class VocabularyCell: UICollectionViewCell {
     // MARK: Helpers
     func configureUI() {
         guard let vocabulary = vocabulary else { return }
-
         backgroundColor = UIColor.appSecondColor?.withAlphaComponent(0.1)
         
         addSubview(indexLabel)
@@ -68,18 +85,31 @@ class VocabularyCell: UICollectionViewCell {
         indexLabel.anchor(
             top: topAnchor,
             left: leftAnchor,
-            paddingTop: 8,
-            paddingLeft: 12
+            paddingTop: 24,
+            paddingLeft: 12,
+            width: 42
         )
         
         addSubview(deleteButton)
         deleteButton.anchor(
             top: topAnchor,
             right: rightAnchor,
-            paddingTop: 8,
+            paddingTop: 24,
             paddingRight: 3,
             width: 20,
             height: 20
+        )
+
+        addSubview(vocabularyTextField)
+        vocabularyTextField.text = vocabulary.vocabulary
+        vocabularyTextField.anchor(
+            top: topAnchor,
+            left: indexLabel.rightAnchor,
+            right: deleteButton.leftAnchor,
+            paddingTop: 16,
+            paddingLeft: 0,
+            paddingRight: 16,
+            height: 38
         )
         
         if !vocabulary.canDelete {
@@ -93,5 +123,10 @@ class VocabularyCell: UICollectionViewCell {
     
     @objc func handleDeleteVocabulary(_ sender: UIButton) {
         delegate?.handleDeleteVocabulary(withIndex: index)
+    }
+
+    @objc func handleTextFieldChange(_ sender: UITextField) {
+        guard let text = sender.text else { return }
+        delegate?.handleChangeVocabulary(withIndex: index, vocabulary: text)
     }
 }
