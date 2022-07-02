@@ -309,7 +309,7 @@ extension SubjectAddViewController: UICollectionViewDelegate {
 
 extension SubjectAddViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 12, height: 68)
+        return CGSize(width: view.frame.width - 12, height: 300)
     }
 }
 

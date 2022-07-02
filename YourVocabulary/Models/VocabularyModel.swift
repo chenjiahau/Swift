@@ -7,8 +7,20 @@
 
 import Foundation
 
+enum VocabularyKind: String, CaseIterable {
+    case noun = "noun"
+    case pronoun = "pronoun"
+    case verb = "verb"
+    case adjective = "adjective"
+    case adverb = "adverb"
+    case preposition = "preposition"
+    case conjunction = "conjunction"
+    case interjection = "interjection"
+}
+
 struct VocabularyModel {
     var canDelete: Bool = true
     var vocabulary: String = ""
+    var vocabularyKind: String = VocabularyKind.noun.rawValue
     var createdDate: Date = Date()
 }
