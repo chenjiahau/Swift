@@ -8,8 +8,7 @@
 import UIKit
 
 class SubjectTextView: UITextView {
-    
-    // MARK: Properties
+    // MARK: UI Properties
     
     private let placeholderLabel1: UILabel = {
         let label = UIGenerater.makeLabel(

@@ -8,7 +8,6 @@
 import UIKit
 
 extension UITextField {
-
     enum PaddingSide {
         case left(CGFloat)
         case right(CGFloat)

@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct Constant {
+struct AppCommon {
     static let appTitle: String = "背單子"
     static let iconSize: Double = 48
+}
+
+struct CellName {
+    static let subject: String = "SubjectCell"
+    static let vocabulary: String = "VocabularyCell"
 }

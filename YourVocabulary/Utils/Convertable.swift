@@ -15,7 +15,6 @@ protocol Convertable: Codable {
 
 
 extension Convertable {
-
     func convertToDict() -> Dictionary<String, Any>? {
         var dict: Dictionary<String, Any>? = nil
  

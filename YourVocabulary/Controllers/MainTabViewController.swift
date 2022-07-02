@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 class MainTabViewController: UITabBarController {
-    // MARK: Properties
+    // MARK: Data Properties
     
     private var user: UserModel? {
         didSet {

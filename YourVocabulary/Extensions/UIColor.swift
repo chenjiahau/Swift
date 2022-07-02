@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIColor {
-    
     static let appMainColor = UIColor(named: "appMainColor")
     static let appSecondColor = UIColor(named: "appSecondColor")
     static let appErrorColor = UIColor(named: "appErrorColor")

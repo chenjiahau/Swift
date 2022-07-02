@@ -8,8 +8,9 @@
 import UIKit
 
 class SettingViewController: UIViewController {
+    // MARK: Data Properties
     
-    // MARK: Properties
+    // MARK: UI Properties
     
     // MARK: Lifecycle
 

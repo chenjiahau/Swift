@@ -9,8 +9,7 @@ import UIKit
 import Firebase
 
 class SignupViewController: UIViewController {
-    
-    // MARK: Properties
+    // MARK: UI Properties
     private let appIcon: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "appLoginIcon"))
         
@@ -96,7 +95,7 @@ class SignupViewController: UIViewController {
     }()
     
     // MARK: Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

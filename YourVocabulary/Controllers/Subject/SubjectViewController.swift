@@ -9,6 +9,8 @@ import UIKit
 import Firebase
 
 class SubjectViewController: UIViewController {
+    // MARK: Data properties
+    private var subjectList: [SubjectModel] = []
     
     // MARK: UI properties
     private let user: UserModel
@@ -17,7 +19,7 @@ class SubjectViewController: UIViewController {
         let imageView = UIImageView(image: UIImage(named: "AppIcon"))
         
         imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = Constant.iconSize / 2
+        imageView.layer.cornerRadius = AppCommon.iconSize / 2
         imageView.layer.masksToBounds = true
         
         return imageView
@@ -96,21 +98,17 @@ class SubjectViewController: UIViewController {
         return view
     }()
     
-    
-    // MARK: Data properties
-    private var subjectList: [SubjectModel] = []
-    
     // MARK: Lifecycle
     
     init(user: UserModel) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -133,7 +131,7 @@ class SubjectViewController: UIViewController {
         )
         
         view.addSubview(appTitle)
-        appTitle.text = "\(Constant.appTitle)(\(subjectList.count))"
+        appTitle.text = "\(AppCommon.appTitle)(\(subjectList.count))"
         appTitle.anchor(
             top: appIcon.firstBaselineAnchor,
             left: appIcon.rightAnchor,

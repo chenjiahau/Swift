@@ -8,7 +8,7 @@
 import UIKit
 
 class SubjectListView: UIView {
-    
+    // MARK: UI Properties
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -16,12 +16,14 @@ class SubjectListView: UIView {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.delegate = self
         cv.dataSource = self
-        cv.register(SubjectCell.self, forCellWithReuseIdentifier: "SubjectItemCell")
+        cv.register(SubjectCell.self, forCellWithReuseIdentifier: CellName.subject)
         cv.backgroundColor = .white
         cv.layer.opacity = 0.1
         
         return cv
     }()
+    
+    // MARK: Lifecycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,7 +49,6 @@ class SubjectListView: UIView {
 // MARK: UICollectionViewDataSource
 
 extension SubjectListView: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfSections section: Int) -> Int {
         return 1
     }
@@ -61,9 +62,8 @@ extension SubjectListView: UICollectionViewDataSource {
 // MARK: UICollectionViewDataSource
 
 extension SubjectListView: UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubjectItemCell", for: indexPath) as! SubjectCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellName.subject, for: indexPath) as! SubjectCell
         cell.backgroundColor = .appSecondColor
         
         return cell

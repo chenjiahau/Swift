@@ -14,6 +14,7 @@ struct UIGenerater {
 // MARK: Message
 
 extension UIGenerater {
+    
     static func makeMessageView() -> UIView {
         let view = UIView()
         view.isHidden = true
@@ -37,6 +38,14 @@ extension UIGenerater {
 // MARK: container, textField, button
 
 extension UIGenerater {
+    static func makeDividerView() -> UIView {
+        let view = UIView()
+        view.backgroundColor = .appMainColor
+        view.layer.opacity = 0.9
+        
+        return view
+        
+    }
     
     static func makeLabel(withText text: String, font: UIFont, color: UIColor) -> UILabel {
         let label = UILabel()

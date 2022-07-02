@@ -9,8 +9,12 @@ import UIKit
 
 class SubjectAddViewController: UIViewController {
     
-    // MARK: Properties
+    // MARK: Data Properties
     private let user: UserModel
+    
+    private var subject: SubjectModel = SubjectModel()
+    
+    // MARK: UI Properties
     
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
@@ -54,13 +58,7 @@ class SubjectAddViewController: UIViewController {
         return button
     }()
     
-    private let dividerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .appMainColor
-        view.layer.opacity = 0.9
-        
-        return view
-    }()
+    private let dividerView: UIView = UIGenerater.makeDividerView()
     
     private let subjectTitle: UILabel = {
         let label = UIGenerater.makeLabel(
@@ -117,13 +115,11 @@ class SubjectAddViewController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.delegate = self
         cv.dataSource = self
-        cv.register(VocabularyCell.self, forCellWithReuseIdentifier: "VocabualryCell")
+        cv.register(VocabularyCell.self, forCellWithReuseIdentifier: CellName.vocabulary)
         cv.backgroundColor = .white
         
         return cv
     }()
-    
-    private var subject: SubjectModel = SubjectModel()
     
     // MARK: Lifecycle
     
@@ -131,7 +127,7 @@ class SubjectAddViewController: UIViewController {
         self.user = user
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -246,7 +242,7 @@ class SubjectAddViewController: UIViewController {
             object: nil
         )
     }
-
+    
     // MARK: Selector
     
     @objc func handleBack(_ sender: UIButton) {
@@ -275,6 +271,7 @@ class SubjectAddViewController: UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
 }
 
 
@@ -289,15 +286,15 @@ extension SubjectAddViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return subject.vocabularies.count
     }
+    
 }
 
 
 // MARK: UICollectionViewDataSource
 
 extension SubjectAddViewController: UICollectionViewDelegate {
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VocabualryCell", for: indexPath) as! VocabularyCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellName.vocabulary, for: indexPath) as! VocabularyCell
 
         cell.index = indexPath.row
         cell.vocabulary = subject.vocabularies[indexPath.row]

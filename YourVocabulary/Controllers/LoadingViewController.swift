@@ -8,7 +8,7 @@
 import UIKit
 
 class LoadingViewController: UIViewController {
-    // MARK: Properties
+    // MARK: UI Properties
     
     private let loadingLabel: UILabel = {
         let label = UIGenerater.makeLabel(withText: "Loading", font: UIFont.systemFont(ofSize: 24), color: .white)

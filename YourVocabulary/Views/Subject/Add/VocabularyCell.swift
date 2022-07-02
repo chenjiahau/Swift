@@ -9,12 +9,12 @@ import UIKit
 
 protocol VocabularyCellDelegate {
     func handleDeleteVocabulary(withIndex index: Int)
+    
     func handleChangeVocabulary(withIndex index: Int, vocabulary: String)
 }
 
 class VocabularyCell: UICollectionViewCell {
-    
-    // MARK: Properties
+    // MARK: Data Properties
     var index: Int = 0
     var vocabulary: VocabularyModel? {
         didSet {
@@ -22,6 +22,8 @@ class VocabularyCell: UICollectionViewCell {
         }
     }
     var delegate: VocabularyCellDelegate?
+    
+    // MARK: UI Properties
     
     private lazy var indexLabel: UILabel = {
         let label = UIGenerater.makeLabel(
@@ -129,4 +131,5 @@ class VocabularyCell: UICollectionViewCell {
         guard let text = sender.text else { return }
         delegate?.handleChangeVocabulary(withIndex: index, vocabulary: text)
     }
+    
 }
