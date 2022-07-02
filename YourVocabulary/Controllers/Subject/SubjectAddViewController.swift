@@ -213,9 +213,9 @@ class SubjectAddViewController: UIViewController {
         view.addSubview(addVocabularyButton)
         addVocabularyButton.anchor(
             top: subjectdividerView.bottomAnchor,
-            right: view.safeAreaLayoutGuide.rightAnchor,
-            paddingTop: 12,
-            paddingRight: 8
+            left: vocabularyTitle.rightAnchor,
+            paddingTop: 18,
+            paddingLeft: 8
         )
         
         view.addSubview(vocabularyCollectionView)
@@ -259,6 +259,10 @@ class SubjectAddViewController: UIViewController {
     }
     
     @objc func handleAddVocabulary(_ sender: UIButton) {
+        if subject.vocabularies.count > 9 {
+            return
+        }
+        
         subject.vocabularies.append(VocabularyModel())
         vocabularyCollectionView.reloadData()
         vocabularyCollectionView.scrollToItem(
@@ -309,7 +313,7 @@ extension SubjectAddViewController: UICollectionViewDelegate {
 
 extension SubjectAddViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 12, height: 300)
+        return CGSize(width: view.frame.width - 12, height: 126)
     }
 }
 
@@ -324,6 +328,11 @@ extension SubjectAddViewController: VocabularyCellDelegate {
 
     func handleChangeVocabulary(withIndex index: Int, vocabulary: String) {
         subject.vocabularies[index].vocabulary = vocabulary
+        vocabularyCollectionView.reloadData()
+    }
+    
+    func handleChangeVocabularyKind(withIndex index: Int, vocabularyKind: String) {
+        subject.vocabularies[index].vocabularyKind = vocabularyKind
         vocabularyCollectionView.reloadData()
     }
 }

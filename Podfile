@@ -8,7 +8,8 @@ target 'YourVocabulary' do
   # Pods for YourVocabulary
   pod 'Firebase/Core' 
   pod 'Firebase/Auth'
-  pod "Firebase/Database"
+  pod 'Firebase/Database'
   pod 'IQKeyboardManagerSwift'
+  pod 'DropDown'
 
 end

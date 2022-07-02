@@ -21,6 +21,6 @@ enum VocabularyKind: String, CaseIterable {
 struct VocabularyModel {
     var canDelete: Bool = true
     var vocabulary: String = ""
-    var vocabularyKind: String = VocabularyKind.noun.rawValue
+    var vocabularyKind: String = VocabularyKind.noun.rawValue.uppercased()
     var createdDate: Date = Date()
 }

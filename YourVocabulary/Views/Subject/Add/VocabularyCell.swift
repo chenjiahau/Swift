@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import DropDown
 
 protocol VocabularyCellDelegate {
     func handleDeleteVocabulary(withIndex index: Int)
     
     func handleChangeVocabulary(withIndex index: Int, vocabulary: String)
+    
+    func handleChangeVocabularyKind(withIndex index: Int, vocabularyKind: String)
 }
 
 class VocabularyCell: UICollectionViewCell {
@@ -54,13 +57,64 @@ class VocabularyCell: UICollectionViewCell {
         let textField = UIGenerater.makeTextField(placeholer: "")
 
         textField.backgroundColor = .white
-        textField.layer.borderColor = UIColor.appMainColor?.cgColor
-        textField.layer.cornerRadius = 38 / 2
-        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.appMainColor?.withAlphaComponent(0.1).cgColor
+        textField.layer.cornerRadius = 4 / 2
         textField.addPadding(.both(20))
         textField.addTarget(
             self,
-            action: #selector(handleTextFieldChange(_:)),
+            action: #selector(handleVocabularyTextFieldChange(_:)),
+            for: .editingDidEnd
+        )
+
+        return textField
+    }()
+    
+    private lazy var vocabularyKindButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        button.setTitleColor(.appMainColor, for: .normal)
+        button.backgroundColor = UIColor.clear
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
+        button.contentHorizontalAlignment = .left
+        button.addTarget(
+            self,
+            action: #selector(handleClickVocabularyKind(_:)),
+            for: .touchUpInside
+        )
+        
+        return button
+    }()
+    
+    private lazy var vocabularyKindDropdown: DropDown = {
+        let dropDown = DropDown()
+        
+        var vocabularyKindList: [String] = []
+        VocabularyKind.allCases.forEach { vocabularyKind in
+            dropDown.dataSource.append(vocabularyKind.rawValue.uppercased())
+            vocabularyKindList.append(vocabularyKind.rawValue.uppercased())
+        }
+        
+        dropDown.cellNib = UINib(nibName: "VocabularyKindCell", bundle: nil)
+        dropDown.customCellConfiguration = { index, title, cell in
+            guard let cell = cell as? VocabularyKindCell else { return }
+            cell.optionLabel.text = vocabularyKindList[index]
+            cell.optionLabel.textColor = .white
+        }
+        
+        return dropDown
+    }()
+    
+    private lazy var translatorTextField: UITextField = {
+        let textField = UIGenerater.makeTextField(placeholer: "Enter translator")
+
+        textField.backgroundColor = UIColor.white.withAlphaComponent(0.5)
+        textField.font = UIFont.systemFont(ofSize: 12)
+        textField.layer.borderColor = UIColor.appMainColor?.cgColor
+        textField.layer.cornerRadius = 4 / 2
+        textField.addPadding(.both(4))
+        textField.addTarget(
+            self,
+            action: #selector(handleTranslatorTextFieldChange(_:)),
             for: .editingDidEnd
         )
 
@@ -114,6 +168,39 @@ class VocabularyCell: UICollectionViewCell {
             height: 38
         )
         
+        addSubview(vocabularyKindButton)
+        let title = "[ \(vocabulary.vocabularyKind) ]"
+        vocabularyKindButton.setTitle(title, for: .normal)
+        vocabularyKindButton.anchor(
+            top: vocabularyTextField.bottomAnchor,
+            left: vocabularyTextField.leftAnchor,
+            paddingTop: 8,
+            paddingLeft: 12
+        )
+        
+        vocabularyKindDropdown.anchorView = vocabularyKindButton
+        vocabularyKindDropdown.selectionAction = { [unowned self] (index: Int, item: String) in
+            let title = "[ \(item) ]"
+            
+            self.vocabularyKindButton.setTitle(title, for: .normal)
+            self.vocabulary?.vocabularyKind = item
+            self.delegate?.handleChangeVocabularyKind(withIndex: self.index, vocabularyKind: item)
+        }
+        
+        addSubview(translatorTextField)
+        translatorTextField.text = ""
+        translatorTextField.anchor(
+            top: vocabularyKindButton.bottomAnchor,
+            left: vocabularyKindButton.leftAnchor,
+            bottom: bottomAnchor,
+            right: vocabularyTextField.rightAnchor,
+            paddingTop: 0,
+            paddingLeft: 0,
+            paddingBottom: 8,
+            paddingRight: 0,
+            height: 28
+        )
+        
         if !vocabulary.canDelete {
             deleteButton.isHidden = true
         } else {
@@ -127,9 +214,16 @@ class VocabularyCell: UICollectionViewCell {
         delegate?.handleDeleteVocabulary(withIndex: index)
     }
 
-    @objc func handleTextFieldChange(_ sender: UITextField) {
+    @objc func handleVocabularyTextFieldChange(_ sender: UITextField) {
         guard let text = sender.text else { return }
         delegate?.handleChangeVocabulary(withIndex: index, vocabulary: text)
     }
     
+    @objc func handleClickVocabularyKind(_ sender: UIButton) {
+        vocabularyKindDropdown.show()
+    }
+    
+    @objc func handleTranslatorTextFieldChange(_ sender: UITextField) {
+        
+    }
 }
