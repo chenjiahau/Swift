@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		178E5B7A0FCC59DAA78A3964 /* Pods_YourVocabulary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD156AE6866546D1D1703D37 /* Pods_YourVocabulary.framework */; };
 		6B0B691F285D785900AC8EAE /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B691E285D785900AC8EAE /* Constant.swift */; };
-		6B0B6923285D78C400AC8EAE /* StudyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B6922285D78C400AC8EAE /* StudyViewController.swift */; };
+		6B0B6923285D78C400AC8EAE /* SubjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B6922285D78C400AC8EAE /* SubjectViewController.swift */; };
 		6B0B6925285D78D800AC8EAE /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B6924285D78D800AC8EAE /* SettingViewController.swift */; };
 		6B0B6928285D791400AC8EAE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B6927285D791400AC8EAE /* UIView.swift */; };
 		6B0B692A285D792100AC8EAE /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B6929285D792100AC8EAE /* UIColor.swift */; };
-		6B0B692C285D795E00AC8EAE /* SubjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692B285D795E00AC8EAE /* SubjectListViewController.swift */; };
-		6B0B692E285D797400AC8EAE /* SubjectItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692D285D797400AC8EAE /* SubjectItemCell.swift */; };
-		6B0B6930285D798D00AC8EAE /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692F285D798D00AC8EAE /* Subject.swift */; };
+		6B0B692C285D795E00AC8EAE /* SubjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692B285D795E00AC8EAE /* SubjectListView.swift */; };
+		6B0B692E285D797400AC8EAE /* SubjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692D285D797400AC8EAE /* SubjectCell.swift */; };
+		6B0B6930285D798D00AC8EAE /* SubjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B692F285D798D00AC8EAE /* SubjectModel.swift */; };
 		6B0B6932285D7B2100AC8EAE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0B6931285D7B2100AC8EAE /* MainViewController.swift */; };
 		6B336D66285E9B17009A0C72 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B336D65285E9B17009A0C72 /* GoogleService-Info.plist */; };
 		6B336D69285E9EA6009A0C72 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B336D68285E9EA6009A0C72 /* LoginViewController.swift */; };
@@ -24,13 +24,13 @@
 		6B8958A3286297800051EBA5 /* SubjectAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8958A2286297800051EBA5 /* SubjectAddViewController.swift */; };
 		6B8D02C7285FFA52005DA577 /* UIGenerater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02C6285FFA52005DA577 /* UIGenerater.swift */; };
 		6B8D02CA28603ACE005DA577 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02C928603ACE005DA577 /* AuthService.swift */; };
-		6B8D02CE2860762C005DA577 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02CD2860762C005DA577 /* User.swift */; };
+		6B8D02CE2860762C005DA577 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02CD2860762C005DA577 /* UserModel.swift */; };
 		6B8D02D428607B60005DA577 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02D328607B60005DA577 /* UserService.swift */; };
 		6B8D02D628607BCC005DA577 /* DBRef.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02D528607BCC005DA577 /* DBRef.swift */; };
 		6B8D02D828607E7E005DA577 /* Convertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B8D02D728607E7E005DA577 /* Convertable.swift */; };
 		6BC06FF928669CD100CD89F7 /* SubjecTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC06FF828669CD100CD89F7 /* SubjecTextView.swift */; };
 		6BC06FFB2866AB7900CD89F7 /* VocabularyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC06FFA2866AB7900CD89F7 /* VocabularyCell.swift */; };
-		6BC06FFF2866AEC300CD89F7 /* Vocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC06FFE2866AEC300CD89F7 /* Vocabulary.swift */; };
+		6BC06FFF2866AEC300CD89F7 /* VocabularyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC06FFE2866AEC300CD89F7 /* VocabularyModel.swift */; };
 		6BD6D4352841A7670006A92C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6D4342841A7670006A92C /* AppDelegate.swift */; };
 		6BD6D4372841A7670006A92C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6D4362841A7670006A92C /* SceneDelegate.swift */; };
 		6BD6D4392841A7670006A92C /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD6D4382841A7670006A92C /* MainTabViewController.swift */; };
@@ -44,13 +44,13 @@
 /* Begin PBXFileReference section */
 		1AB177274AE2A98B630E3486 /* Pods-YourVocabulary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YourVocabulary.debug.xcconfig"; path = "Target Support Files/Pods-YourVocabulary/Pods-YourVocabulary.debug.xcconfig"; sourceTree = "<group>"; };
 		6B0B691E285D785900AC8EAE /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		6B0B6922285D78C400AC8EAE /* StudyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyViewController.swift; sourceTree = "<group>"; };
+		6B0B6922285D78C400AC8EAE /* SubjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectViewController.swift; sourceTree = "<group>"; };
 		6B0B6924285D78D800AC8EAE /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		6B0B6927285D791400AC8EAE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		6B0B6929285D792100AC8EAE /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		6B0B692B285D795E00AC8EAE /* SubjectListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListViewController.swift; sourceTree = "<group>"; };
-		6B0B692D285D797400AC8EAE /* SubjectItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectItemCell.swift; sourceTree = "<group>"; };
-		6B0B692F285D798D00AC8EAE /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
+		6B0B692B285D795E00AC8EAE /* SubjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectListView.swift; sourceTree = "<group>"; };
+		6B0B692D285D797400AC8EAE /* SubjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCell.swift; sourceTree = "<group>"; };
+		6B0B692F285D798D00AC8EAE /* SubjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectModel.swift; sourceTree = "<group>"; };
 		6B0B6931285D7B2100AC8EAE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6B336D65285E9B17009A0C72 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B336D68285E9EA6009A0C72 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -59,13 +59,13 @@
 		6B8958A2286297800051EBA5 /* SubjectAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectAddViewController.swift; sourceTree = "<group>"; };
 		6B8D02C6285FFA52005DA577 /* UIGenerater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGenerater.swift; sourceTree = "<group>"; };
 		6B8D02C928603ACE005DA577 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		6B8D02CD2860762C005DA577 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6B8D02CD2860762C005DA577 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		6B8D02D328607B60005DA577 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		6B8D02D528607BCC005DA577 /* DBRef.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRef.swift; sourceTree = "<group>"; };
 		6B8D02D728607E7E005DA577 /* Convertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertable.swift; sourceTree = "<group>"; };
 		6BC06FF828669CD100CD89F7 /* SubjecTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjecTextView.swift; sourceTree = "<group>"; };
 		6BC06FFA2866AB7900CD89F7 /* VocabularyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyCell.swift; sourceTree = "<group>"; };
-		6BC06FFE2866AEC300CD89F7 /* Vocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocabulary.swift; sourceTree = "<group>"; };
+		6BC06FFE2866AEC300CD89F7 /* VocabularyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabularyModel.swift; sourceTree = "<group>"; };
 		6BD6D4312841A7670006A92C /* YourVocabulary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourVocabulary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BD6D4342841A7670006A92C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6BD6D4362841A7670006A92C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,15 +100,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6B0B6920285D788500AC8EAE /* Study */ = {
+		6B0B6920285D788500AC8EAE /* Subject */ = {
 			isa = PBXGroup;
 			children = (
-				6B8958A02862968D0051EBA5 /* Subject */,
-				6B0B6922285D78C400AC8EAE /* StudyViewController.swift */,
-				6B0B692B285D795E00AC8EAE /* SubjectListViewController.swift */,
-				6B0B692D285D797400AC8EAE /* SubjectItemCell.swift */,
+				6B0B6922285D78C400AC8EAE /* SubjectViewController.swift */,
+				6B8958A2286297800051EBA5 /* SubjectAddViewController.swift */,
 			);
-			path = Study;
+			path = Subject;
 			sourceTree = "<group>";
 		};
 		6B0B6921285D789700AC8EAE /* Setting */ = {
@@ -138,20 +136,37 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
-		6B8958A02862968D0051EBA5 /* Subject */ = {
+		6B39FB9C286FC61100093BE5 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				6B8958A1286297680051EBA5 /* Add */,
+				6B39FB9E286FC71100093BE5 /* Subject */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		6B39FB9E286FC71100093BE5 /* Subject */ = {
+			isa = PBXGroup;
+			children = (
+				6B39FBA0286FC76600093BE5 /* Add */,
+				6B39FB9F286FC71A00093BE5 /* List */,
 			);
 			path = Subject;
 			sourceTree = "<group>";
 		};
-		6B8958A1286297680051EBA5 /* Add */ = {
+		6B39FB9F286FC71A00093BE5 /* List */ = {
 			isa = PBXGroup;
 			children = (
-				6B8958A2286297800051EBA5 /* SubjectAddViewController.swift */,
-				6BC06FFA2866AB7900CD89F7 /* VocabularyCell.swift */,
+				6B0B692B285D795E00AC8EAE /* SubjectListView.swift */,
+				6B0B692D285D797400AC8EAE /* SubjectCell.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		6B39FBA0286FC76600093BE5 /* Add */ = {
+			isa = PBXGroup;
+			children = (
 				6BC06FF828669CD100CD89F7 /* SubjecTextView.swift */,
+				6BC06FFA2866AB7900CD89F7 /* VocabularyCell.swift */,
 			);
 			path = Add;
 			sourceTree = "<group>";
@@ -198,6 +213,7 @@
 			children = (
 				6BD6D44D2841A7DF0006A92C /* Controllers */,
 				6BD6D44C2841A7DA0006A92C /* Views */,
+				6B39FB9C286FC61100093BE5 /* ViewModels */,
 				6BD6D44B2841A7D40006A92C /* Models */,
 				6B0B6926285D78F500AC8EAE /* Extensions */,
 				6B8D02C828603A9A005DA577 /* Services */,
@@ -217,9 +233,9 @@
 		6BD6D44B2841A7D40006A92C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				6B0B692F285D798D00AC8EAE /* Subject.swift */,
-				6B8D02CD2860762C005DA577 /* User.swift */,
-				6BC06FFE2866AEC300CD89F7 /* Vocabulary.swift */,
+				6B0B692F285D798D00AC8EAE /* SubjectModel.swift */,
+				6B8D02CD2860762C005DA577 /* UserModel.swift */,
+				6BC06FFE2866AEC300CD89F7 /* VocabularyModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -238,7 +254,7 @@
 				6B0B6931285D7B2100AC8EAE /* MainViewController.swift */,
 				6BD6D4382841A7670006A92C /* MainTabViewController.swift */,
 				6B336D67285E9E95009A0C72 /* Auth */,
-				6B0B6920285D788500AC8EAE /* Study */,
+				6B0B6920285D788500AC8EAE /* Subject */,
 				6B0B6921285D789700AC8EAE /* Setting */,
 				6B344DE92869370300619156 /* LoadingViewController.swift */,
 			);
@@ -373,26 +389,26 @@
 				6B0B6928285D791400AC8EAE /* UIView.swift in Sources */,
 				6B0B6932285D7B2100AC8EAE /* MainViewController.swift in Sources */,
 				EAC70547286D35400068CAB1 /* UITextField.swift in Sources */,
-				6B0B692E285D797400AC8EAE /* SubjectItemCell.swift in Sources */,
+				6B0B692E285D797400AC8EAE /* SubjectCell.swift in Sources */,
 				6B336D6B285E9EB2009A0C72 /* SignupViewController.swift in Sources */,
 				6BD6D4392841A7670006A92C /* MainTabViewController.swift in Sources */,
 				6BC06FF928669CD100CD89F7 /* SubjecTextView.swift in Sources */,
 				6B8D02D628607BCC005DA577 /* DBRef.swift in Sources */,
 				6BC06FFB2866AB7900CD89F7 /* VocabularyCell.swift in Sources */,
 				6BD6D4352841A7670006A92C /* AppDelegate.swift in Sources */,
-				6B0B6930285D798D00AC8EAE /* Subject.swift in Sources */,
+				6B0B6930285D798D00AC8EAE /* SubjectModel.swift in Sources */,
 				6B8D02CA28603ACE005DA577 /* AuthService.swift in Sources */,
 				6B344DEA2869370300619156 /* LoadingViewController.swift in Sources */,
 				6B8958A3286297800051EBA5 /* SubjectAddViewController.swift in Sources */,
 				6B0B691F285D785900AC8EAE /* Constant.swift in Sources */,
 				6B0B692A285D792100AC8EAE /* UIColor.swift in Sources */,
 				6BD6D43F2841A7670006A92C /* YourVocabulary.xcdatamodeld in Sources */,
-				6B0B6923285D78C400AC8EAE /* StudyViewController.swift in Sources */,
-				6BC06FFF2866AEC300CD89F7 /* Vocabulary.swift in Sources */,
-				6B0B692C285D795E00AC8EAE /* SubjectListViewController.swift in Sources */,
+				6B0B6923285D78C400AC8EAE /* SubjectViewController.swift in Sources */,
+				6BC06FFF2866AEC300CD89F7 /* VocabularyModel.swift in Sources */,
+				6B0B692C285D795E00AC8EAE /* SubjectListView.swift in Sources */,
 				6B8D02D428607B60005DA577 /* UserService.swift in Sources */,
 				6B0B6925285D78D800AC8EAE /* SettingViewController.swift in Sources */,
-				6B8D02CE2860762C005DA577 /* User.swift in Sources */,
+				6B8D02CE2860762C005DA577 /* UserModel.swift in Sources */,
 				6B8D02C7285FFA52005DA577 /* UIGenerater.swift in Sources */,
 				6B8D02D828607E7E005DA577 /* Convertable.swift in Sources */,
 				6BD6D4372841A7670006A92C /* SceneDelegate.swift in Sources */,

@@ -11,7 +11,7 @@ import Firebase
 class MainTabViewController: UITabBarController {
     // MARK: Properties
     
-    private var user: User? {
+    private var user: UserModel? {
         didSet {
             self.configureUI(user!)
         }
@@ -32,8 +32,8 @@ class MainTabViewController: UITabBarController {
     
     // MARK: Helpers
     
-    func configureUI(_ user: User) {
-        let studyVC = StudyViewController(user: user)
+    func configureUI(_ user: UserModel) {
+        let studyVC = SubjectViewController(user: user)
         let studyNav = generateNavigationController(title: "Subject", image: UIImage(systemName: "calendar.circle"), viewController: studyVC)
         
         let settingVC = SettingViewController()
@@ -69,7 +69,7 @@ class MainTabViewController: UITabBarController {
                 self.present(navigation, animated: true)
                 
                 UserService.getUser(withUid: uid) { snapshot in
-                    self.user = User.createUser(snapshot?.value as? NSDictionary)
+                    self.user = UserModel.createUser(snapshot?.value as? NSDictionary)
                     navigation.dismiss(animated: true)
                 }
             }

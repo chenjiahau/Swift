@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Subject {
+struct SubjectModel {
     var subject: String = ""
-    var vocabularies: [Vocabulary] = []
+    var vocabularies: [VocabularyModel] = []
     var createdDate: Date = Date()
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SubjectListViewController: UIView {
+class SubjectListView: UIView {
     
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -16,7 +16,7 @@ class SubjectListViewController: UIView {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.delegate = self
         cv.dataSource = self
-        cv.register(SubjectItemCell.self, forCellWithReuseIdentifier: "SubjectItemCell")
+        cv.register(SubjectCell.self, forCellWithReuseIdentifier: "SubjectItemCell")
         cv.backgroundColor = .white
         cv.layer.opacity = 0.1
         
@@ -46,7 +46,7 @@ class SubjectListViewController: UIView {
 
 // MARK: UICollectionViewDataSource
 
-extension SubjectListViewController: UICollectionViewDataSource {
+extension SubjectListView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfSections section: Int) -> Int {
         return 1
@@ -60,10 +60,10 @@ extension SubjectListViewController: UICollectionViewDataSource {
 
 // MARK: UICollectionViewDataSource
 
-extension SubjectListViewController: UICollectionViewDelegate {
+extension SubjectListView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubjectItemCell", for: indexPath) as! SubjectItemCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubjectItemCell", for: indexPath) as! SubjectCell
         cell.backgroundColor = .appSecondColor
         
         return cell
@@ -73,7 +73,7 @@ extension SubjectListViewController: UICollectionViewDelegate {
 
 // MARK: UICollectionViewDelegate
 
-extension SubjectListViewController: UICollectionViewDelegateFlowLayout {
+extension SubjectListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: frame.width, height: 200)
     }

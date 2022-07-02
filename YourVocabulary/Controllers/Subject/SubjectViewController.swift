@@ -8,10 +8,10 @@
 import UIKit
 import Firebase
 
-class StudyViewController: UIViewController {
+class SubjectViewController: UIViewController {
     
     // MARK: UI properties
-    private let user: User
+    private let user: UserModel
     
     private let appIcon: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "AppIcon"))
@@ -90,19 +90,19 @@ class StudyViewController: UIViewController {
         return view
     }()
     
-    private lazy var subjectView: SubjectListViewController = {
-        let view = SubjectListViewController()
+    private lazy var subjectView: SubjectListView = {
+        let view = SubjectListView()
         
         return view
     }()
     
     
     // MARK: Data properties
-    private var subjectList: [Subject] = []
+    private var subjectList: [SubjectModel] = []
     
     // MARK: Lifecycle
     
-    init(user: User) {
+    init(user: UserModel) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
     }

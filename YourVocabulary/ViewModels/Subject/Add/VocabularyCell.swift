@@ -16,7 +16,7 @@ class VocabularyCell: UICollectionViewCell {
     
     // MARK: Properties
     var index: Int = 0
-    var vocabulary: Vocabulary? {
+    var vocabulary: VocabularyModel? {
         didSet {
             configureUI()
         }

@@ -188,7 +188,7 @@ class SignupViewController: UIViewController {
             }
             
             guard let uid = data?.user.uid else { return }
-            let user = User(email: email, username: username).convertToDict()
+            let user = UserModel(email: email, username: username).convertToDict()
             
             UserService.creatUser(withUid: uid, values: user!) { (error, ref) in
                 if let error = error {
@@ -200,7 +200,7 @@ class SignupViewController: UIViewController {
                 UserService.getUser(withUid: uid) { snapshot in
                     guard let mainTabViewController = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.rootViewController as? MainTabViewController else { return }
                     
-                    let user = User.createUser(snapshot?.value as? NSDictionary)
+                    let user = UserModel.createUser(snapshot?.value as? NSDictionary)
                     mainTabViewController.configureUI(user)
                     
                     self.dismiss(animated: true, completion: nil)

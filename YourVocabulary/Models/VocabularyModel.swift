@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Vocabulary {
+struct VocabularyModel {
     var canDelete: Bool = true
     var vocabulary: String = ""
     var createdDate: Date = Date()

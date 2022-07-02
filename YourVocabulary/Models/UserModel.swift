@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct User: Convertable {
+struct UserModel: Convertable {
     let email: String
     let username: String
     
-    static func createUser(_ value: NSDictionary?) -> User {
+    static func createUser(_ value: NSDictionary?) -> UserModel {
         let email = value?["email"] as? String ?? ""
         let username = value?["username"] as? String ?? ""
         
-        return User(email: email, username: username)
+        return UserModel(email: email, username: username)
     }
 }

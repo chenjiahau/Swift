@@ -10,7 +10,7 @@ import UIKit
 class SubjectAddViewController: UIViewController {
     
     // MARK: Properties
-    private let user: User
+    private let user: UserModel
     
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .system)
@@ -123,11 +123,11 @@ class SubjectAddViewController: UIViewController {
         return cv
     }()
     
-    private var subject: Subject = Subject()
+    private var subject: SubjectModel = SubjectModel()
     
     // MARK: Lifecycle
     
-    init(user: User) {
+    init(user: UserModel) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
     }
@@ -234,7 +234,7 @@ class SubjectAddViewController: UIViewController {
             paddingRight: 0
         )
         
-        subject.vocabularies.append(Vocabulary(canDelete: false))
+        subject.vocabularies.append(VocabularyModel(canDelete: false))
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -263,7 +263,7 @@ class SubjectAddViewController: UIViewController {
     }
     
     @objc func handleAddVocabulary(_ sender: UIButton) {
-        subject.vocabularies.append(Vocabulary())
+        subject.vocabularies.append(VocabularyModel())
         vocabularyCollectionView.reloadData()
         vocabularyCollectionView.scrollToItem(
             at: IndexPath(item: subject.vocabularies.count - 1, section: 0),
