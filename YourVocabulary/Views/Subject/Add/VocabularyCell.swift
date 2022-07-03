@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 import DropDown
 
 protocol VocabularyCellDelegate {
@@ -59,7 +60,7 @@ class VocabularyCell: UICollectionViewCell {
         textField.backgroundColor = .white
         textField.layer.borderColor = UIColor.appMainColor?.withAlphaComponent(0.1).cgColor
         textField.layer.cornerRadius = 4 / 2
-        textField.addPadding(.both(20))
+        textField.addPadding(.both(22))
         textField.addTarget(
             self,
             action: #selector(handleVocabularyTextFieldChange(_:)),
@@ -67,6 +68,37 @@ class VocabularyCell: UICollectionViewCell {
         )
 
         return textField
+    }()
+    
+    private lazy var speechVocabularyButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        button.tintColor = .appMainColor
+        button.backgroundColor = UIColor.clear
+        button.setImage(UIImage(systemName: "speaker.circle.fill"), for: .normal)
+        button.addTarget(
+            self,
+            action: #selector(handleSpeechVocabulary(_:)),
+            for: .touchUpInside
+        )
+        button.setDimensions(width: 20, height: 20)
+        
+        return button
+    }()
+    
+    private lazy var vocabularyKindLabel: UILabel = {
+        let label = UIGenerater.makeLabel(
+            withText: "",
+            font: UIFont.systemFont(ofSize: 10),
+            color: UIColor.appMainColor!
+        )
+        label.textAlignment = .left
+        
+        label.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleClickVocabularyKind))
+        label.addGestureRecognizer(gestureRecognizer)
+        
+        return label
     }()
     
 //    private lazy var vocabularyKindButton: UIButton = {
@@ -90,8 +122,8 @@ class VocabularyCell: UICollectionViewCell {
         
         var vocabularyKindList: [String] = []
         VocabularyKind.allCases.forEach { vocabularyKind in
-            dropDown.dataSource.append(vocabularyKind.rawValue.uppercased())
-            vocabularyKindList.append(vocabularyKind.rawValue.uppercased())
+            dropDown.dataSource.append(vocabularyKind.rawValue.capitalized)
+            vocabularyKindList.append(vocabularyKind.rawValue.capitalized)
         }
         
         dropDown.cellNib = UINib(nibName: "VocabularyKindCell", bundle: nil)
@@ -104,21 +136,6 @@ class VocabularyCell: UICollectionViewCell {
         return dropDown
     }()
     
-    private lazy var vocabularyKindLabel: UILabel = {
-        let label = UIGenerater.makeLabel(
-            withText: "",
-            font: UIFont.systemFont(ofSize: 10),
-            color: UIColor.appMainColor!
-        )
-        label.textAlignment = .left
-        
-        label.isUserInteractionEnabled = true
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleClickVocabularyKind))
-        label.addGestureRecognizer(gestureRecognizer)
-        
-        return label
-    }()
-    
     private lazy var translatorTextField: UITextField = {
         let textField = UIGenerater.makeTextField(placeholer: "Enter translator")
 
@@ -126,7 +143,7 @@ class VocabularyCell: UICollectionViewCell {
         textField.font = UIFont.systemFont(ofSize: 12)
         textField.layer.borderColor = UIColor.appMainColor?.cgColor
         textField.layer.cornerRadius = 4 / 2
-        textField.addPadding(.both(4))
+        textField.addPadding(.both(24))
         textField.addTarget(
             self,
             action: #selector(handleTranslatorTextFieldChange(_:)),
@@ -156,7 +173,7 @@ class VocabularyCell: UICollectionViewCell {
         indexLabel.anchor(
             top: topAnchor,
             left: leftAnchor,
-            paddingTop: 24,
+            paddingTop: 16,
             paddingLeft: 12,
             width: 42
         )
@@ -165,8 +182,8 @@ class VocabularyCell: UICollectionViewCell {
         deleteButton.anchor(
             top: topAnchor,
             right: rightAnchor,
-            paddingTop: 24,
-            paddingRight: 3,
+            paddingTop: 16,
+            paddingRight: 8,
             width: 20,
             height: 20
         )
@@ -177,13 +194,21 @@ class VocabularyCell: UICollectionViewCell {
             top: topAnchor,
             left: indexLabel.rightAnchor,
             right: deleteButton.leftAnchor,
-            paddingTop: 16,
+            paddingTop: 8,
             paddingLeft: 0,
-            paddingRight: 16,
+            paddingRight: 8,
             height: 38
         )
         
-//        addSubview(vocabularyKindButton)
+        addSubview(speechVocabularyButton)
+        speechVocabularyButton.anchor(
+            top: vocabularyTextField.bottomAnchor,
+            left: vocabularyTextField.leftAnchor,
+            paddingTop: 8,
+            paddingLeft: 0
+        )
+        
+        //        addSubview(vocabularyKindButton)
 //        let title = "[ \(vocabulary.vocabularyKind) ]"
 //        vocabularyKindButton.setTitle(title, for: .normal)
 //        vocabularyKindButton.anchor(
@@ -198,9 +223,9 @@ class VocabularyCell: UICollectionViewCell {
         vocabularyKindLabel.text = title
         vocabularyKindLabel.anchor(
             top: vocabularyTextField.bottomAnchor,
-            left: vocabularyTextField.leftAnchor,
-            paddingTop: 8,
-            paddingLeft: 0
+            left: speechVocabularyButton.rightAnchor,
+            paddingTop: 12,
+            paddingLeft: 4
         )
         
         vocabularyKindDropdown.anchorView = vocabularyKindLabel
@@ -216,11 +241,11 @@ class VocabularyCell: UICollectionViewCell {
         addSubview(translatorTextField)
         translatorTextField.text = ""
         translatorTextField.anchor(
-            top: vocabularyKindLabel.bottomAnchor,
-            left: vocabularyKindLabel.leftAnchor,
+            top: speechVocabularyButton.bottomAnchor,
+            left: speechVocabularyButton.leftAnchor,
             bottom: bottomAnchor,
             right: vocabularyTextField.rightAnchor,
-            paddingTop: 0,
+            paddingTop: 4,
             paddingLeft: 0,
             paddingBottom: 8,
             paddingRight: 0,
@@ -243,6 +268,17 @@ class VocabularyCell: UICollectionViewCell {
     @objc func handleVocabularyTextFieldChange(_ sender: UITextField) {
         guard let text = sender.text else { return }
         delegate?.handleChangeVocabulary(withIndex: index, vocabulary: text)
+    }
+    
+    @objc func handleSpeechVocabulary(_ sender: UIButton) {
+        guard let text = vocabularyTextField.text else { return }
+        
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = 0.5
+        
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterance)
     }
     
     @objc func handleClickVocabularyKind() {

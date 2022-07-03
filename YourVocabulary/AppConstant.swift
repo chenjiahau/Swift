@@ -12,6 +12,10 @@ struct AppCommon {
     static let iconSize: Double = 48
 }
 
+struct Subject {
+    static let maxVocabulary: Int = 10
+}
+
 struct CellName {
     static let subject: String = "SubjectCell"
     static let vocabulary: String = "VocabularyCell"

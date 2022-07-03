@@ -214,7 +214,7 @@ class SubjectAddViewController: UIViewController {
         addVocabularyButton.anchor(
             top: subjectdividerView.bottomAnchor,
             left: vocabularyTitle.rightAnchor,
-            paddingTop: 18,
+            paddingTop: 16,
             paddingLeft: 8
         )
         
@@ -259,7 +259,7 @@ class SubjectAddViewController: UIViewController {
     }
     
     @objc func handleAddVocabulary(_ sender: UIButton) {
-        if subject.vocabularies.count > 9 {
+        if subject.vocabularies.count > Subject.maxVocabulary - 1 {
             return
         }
         
@@ -313,7 +313,7 @@ extension SubjectAddViewController: UICollectionViewDelegate {
 
 extension SubjectAddViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 12, height: 126)
+        return CGSize(width: view.frame.width - 12, height: 110)
     }
 }
 
