@@ -69,21 +69,21 @@ class VocabularyCell: UICollectionViewCell {
         return textField
     }()
     
-    private lazy var vocabularyKindButton: UIButton = {
-        let button = UIButton(type: .system)
-        
-        button.setTitleColor(.appMainColor, for: .normal)
-        button.backgroundColor = UIColor.clear
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
-        button.contentHorizontalAlignment = .left
-        button.addTarget(
-            self,
-            action: #selector(handleClickVocabularyKind(_:)),
-            for: .touchUpInside
-        )
-        
-        return button
-    }()
+//    private lazy var vocabularyKindButton: UIButton = {
+//        let button = UIButton(type: .system)
+//
+//        button.setTitleColor(.appMainColor, for: .normal)
+//        button.backgroundColor = UIColor.clear
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 10)
+//        button.contentHorizontalAlignment = .left
+//        button.addTarget(
+//            self,
+//            action: #selector(handleClickVocabularyKind(_:)),
+//            for: .touchUpInside
+//        )
+//
+//        return button
+//    }()
     
     private lazy var vocabularyKindDropdown: DropDown = {
         let dropDown = DropDown()
@@ -102,6 +102,21 @@ class VocabularyCell: UICollectionViewCell {
         }
         
         return dropDown
+    }()
+    
+    private lazy var vocabularyKindLabel: UILabel = {
+        let label = UIGenerater.makeLabel(
+            withText: "",
+            font: UIFont.systemFont(ofSize: 10),
+            color: UIColor.appMainColor!
+        )
+        label.textAlignment = .left
+        
+        label.isUserInteractionEnabled = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleClickVocabularyKind))
+        label.addGestureRecognizer(gestureRecognizer)
+        
+        return label
     }()
     
     private lazy var translatorTextField: UITextField = {
@@ -168,21 +183,32 @@ class VocabularyCell: UICollectionViewCell {
             height: 38
         )
         
-        addSubview(vocabularyKindButton)
+//        addSubview(vocabularyKindButton)
+//        let title = "[ \(vocabulary.vocabularyKind) ]"
+//        vocabularyKindButton.setTitle(title, for: .normal)
+//        vocabularyKindButton.anchor(
+//            top: vocabularyTextField.bottomAnchor,
+//            left: vocabularyTextField.leftAnchor,
+//            paddingTop: 8,
+//            paddingLeft: 12
+//        )
+        
+        addSubview(vocabularyKindLabel)
         let title = "[ \(vocabulary.vocabularyKind) ]"
-        vocabularyKindButton.setTitle(title, for: .normal)
-        vocabularyKindButton.anchor(
+        vocabularyKindLabel.text = title
+        vocabularyKindLabel.anchor(
             top: vocabularyTextField.bottomAnchor,
             left: vocabularyTextField.leftAnchor,
             paddingTop: 8,
-            paddingLeft: 12
+            paddingLeft: 0
         )
         
-        vocabularyKindDropdown.anchorView = vocabularyKindButton
+        vocabularyKindDropdown.anchorView = vocabularyKindLabel
+        vocabularyKindDropdown.width = 200
         vocabularyKindDropdown.selectionAction = { [unowned self] (index: Int, item: String) in
             let title = "[ \(item) ]"
             
-            self.vocabularyKindButton.setTitle(title, for: .normal)
+            self.vocabularyKindLabel.text = title
             self.vocabulary?.vocabularyKind = item
             self.delegate?.handleChangeVocabularyKind(withIndex: self.index, vocabularyKind: item)
         }
@@ -190,8 +216,8 @@ class VocabularyCell: UICollectionViewCell {
         addSubview(translatorTextField)
         translatorTextField.text = ""
         translatorTextField.anchor(
-            top: vocabularyKindButton.bottomAnchor,
-            left: vocabularyKindButton.leftAnchor,
+            top: vocabularyKindLabel.bottomAnchor,
+            left: vocabularyKindLabel.leftAnchor,
             bottom: bottomAnchor,
             right: vocabularyTextField.rightAnchor,
             paddingTop: 0,
@@ -219,7 +245,7 @@ class VocabularyCell: UICollectionViewCell {
         delegate?.handleChangeVocabulary(withIndex: index, vocabulary: text)
     }
     
-    @objc func handleClickVocabularyKind(_ sender: UIButton) {
+    @objc func handleClickVocabularyKind() {
         vocabularyKindDropdown.show()
     }
     
