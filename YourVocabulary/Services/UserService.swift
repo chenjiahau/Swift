@@ -5,6 +5,13 @@
 //  Created by Ivan Chen on 2022/6/20.
 //
 
+/*
+    Database structure
+    Users
+    email: String
+    userName: String
+*/
+
 import Foundation
 import Firebase
 

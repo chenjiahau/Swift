@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SubjectAddViewController: UIViewController {
     
@@ -250,7 +251,81 @@ class SubjectAddViewController: UIViewController {
     }
     
     @objc func handleSave(_ sender: UIButton) {
-        dismiss(animated: true)
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        // Necessary to sync all textfiled changhed
+        dismissKeyboard()
+        
+        if subject.subject == "" {
+            let alert = UIGenerater.makeAlert(withTitle: "", message: "Please fill the subject as lease.")
+            let warningButton = UIGenerater.makeAlertButton(withTitle: "Ok", style: .destructive) {
+            }
+            alert.addAction(warningButton)
+            
+            present(alert, animated: true)
+            return
+        }
+        
+        // Fetch verified vocabulary
+        var verifiedVocabularyList: [[String: Any]] = []
+        for vocabulary in subject.vocabularies {
+            if vocabulary.vocabulary != "" && vocabulary.translator != "" {
+                verifiedVocabularyList.append([
+                    "vocabulary": vocabulary.vocabulary,
+                    "vocabularyKind": vocabulary.vocabularyKind,
+                    "translator": vocabulary.translator
+                ])
+                
+            }
+        }
+        
+        SubjectService.creatSubject(
+            withUid: uid,
+            subject: subject.subject,
+            numberOfvocabulary: verifiedVocabularyList.count) { (error, ref) in
+                if let _ = error {
+                    let alert = UIGenerater.makeAlert(withTitle: "Error", message: "Something wrong! Please try again.")
+                    let errorButton = UIGenerater.makeAlertButton(withTitle: "Ok", style: .default) {
+                    }
+                    
+                    alert.addAction(errorButton)
+                    self.present(alert, animated: true)
+                    
+                    return
+                }
+                
+                guard let subjectId = ref?.key else {
+                    let alert = UIGenerater.makeAlert(withTitle: "Error", message: "Something wrong! Please try again.")
+                    let errorButton = UIGenerater.makeAlertButton(withTitle: "Ok", style: .default) {
+                    }
+                    
+                    alert.addAction(errorButton)
+                    self.present(alert, animated: true)
+                    
+                    return
+                }
+                
+                SubjectService.addVocabulary(withSubjectId: subjectId, vocabularyList: verifiedVocabularyList) { (err, ref) in
+                    if let _ = error {
+                        let alert = UIGenerater.makeAlert(withTitle: "Error", message: "Something wrong! Please try again.")
+                        let errorButton = UIGenerater.makeAlertButton(withTitle: "Ok", style: .default) {
+                        }
+                        
+                        alert.addAction(errorButton)
+                        self.present(alert, animated: true)
+                        
+                        return
+                    }
+                    
+                    let alert = UIGenerater.makeAlert(withTitle: "", message: "Create successfully.")
+                    let okButton = UIGenerater.makeAlertButton(withTitle: "Ok", style: .default) {
+                        self.dismiss(animated: true)
+                    }
+                    
+                    alert.addAction(okButton)
+                    self.present(alert, animated: true)
+                }
+            }
     }
 
     @objc func handleTextInputChange() {
@@ -333,6 +408,11 @@ extension SubjectAddViewController: VocabularyCellDelegate {
     
     func handleChangeVocabularyKind(withIndex index: Int, vocabularyKind: String) {
         subject.vocabularies[index].vocabularyKind = vocabularyKind
+        vocabularyCollectionView.reloadData()
+    }
+    
+    func handleChangeTranslator(withIndex index: Int, translator: String) {
+        subject.vocabularies[index].translator = translator
         vocabularyCollectionView.reloadData()
     }
 }

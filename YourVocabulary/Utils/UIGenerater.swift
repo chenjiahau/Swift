@@ -14,7 +14,6 @@ struct UIGenerater {
 // MARK: Message
 
 extension UIGenerater {
-    
     static func makeMessageView() -> UIView {
         let view = UIView()
         view.isHidden = true
@@ -34,8 +33,26 @@ extension UIGenerater {
     }
 }
 
+// MARK: Alet
 
-// MARK: container, textField, button
+extension UIGenerater {
+    static func makeAlert(withTitle title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        return alert
+    }
+    
+    static func makeAlertButton(withTitle title: String, style: UIAlertAction.Style, callback: @escaping () -> ()) -> UIAlertAction {
+        let button = UIAlertAction(title: title, style: style) { UIAlertAction in
+            callback()
+        }
+        
+        return button
+    }
+}
+
+
+// MARK: container, textField, button, alert
 
 extension UIGenerater {
     static func makeDividerView() -> UIView {

@@ -15,6 +15,8 @@ protocol VocabularyCellDelegate {
     func handleChangeVocabulary(withIndex index: Int, vocabulary: String)
     
     func handleChangeVocabularyKind(withIndex index: Int, vocabularyKind: String)
+    
+    func handleChangeTranslator(withIndex index: Int, translator: String)
 }
 
 class VocabularyCell: UICollectionViewCell {
@@ -196,8 +198,7 @@ class VocabularyCell: UICollectionViewCell {
             right: deleteButton.leftAnchor,
             paddingTop: 8,
             paddingLeft: 0,
-            paddingRight: 8,
-            height: 38
+            paddingRight: 8
         )
         
         addSubview(speechVocabularyButton)
@@ -239,7 +240,7 @@ class VocabularyCell: UICollectionViewCell {
         }
         
         addSubview(translatorTextField)
-        translatorTextField.text = ""
+        translatorTextField.text = vocabulary.translator
         translatorTextField.anchor(
             top: speechVocabularyButton.bottomAnchor,
             left: speechVocabularyButton.leftAnchor,
@@ -286,6 +287,7 @@ class VocabularyCell: UICollectionViewCell {
     }
     
     @objc func handleTranslatorTextFieldChange(_ sender: UITextField) {
-        
+        guard let text = sender.text else { return }
+        delegate?.handleChangeTranslator(withIndex: index, translator: text)
     }
 }
